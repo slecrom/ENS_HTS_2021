@@ -3,6 +3,7 @@
 - [1. Practical content](#content)
 - [2. Connect to the IFB server](#logging)
 - [3. Connect to the IFB Rstudio server](#rstudio)
+- [3. Connect to the IFB Rstudio server](#connect-to-the-ifb-rstudio-server)
 
 ## <a name="content">Practical Transcriptomic analysis</a>
 
@@ -37,6 +38,7 @@ ssh <login>@core.cluster.france-bioinformatique.fr
 ```
 
 ## Connect to the IFB Rstudio server <a name="rstudio"></a>
+## Connect to the IFB Rstudio server
 
 In a web browser, connect to https://rstudio.cluster.france-bioinformatique.fr/auth-sign-in and log in using your user name and password (same as for ssh connection)
 
