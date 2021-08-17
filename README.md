@@ -1,6 +1,8 @@
 # Functional genomic data analysis: transcriptomics - Practical
 
 - [1. Practical content](#content)
+ - [TD Microarrays](./Microarrays/README.md)
+ - [TD RNAseq](./RNAseq/TD_RNAseq.md)
 - [2. Connect to the IFB server](#logging)
 - [3. Connect to the IFB Rstudio server](#rstudio)
 - [3. Connect to the IFB Rstudio server](#connect-to-the-ifb-rstudio-server)
