@@ -4,7 +4,7 @@
 - [2. Connect to the IFB server](#logging)
 - [3. Connect to the IFB Rstudio server](#rstudio)
 
-## Practical Transcriptomic analysis <a name="content"></a>
+## <a name="content">Practical Transcriptomic analysis</a>
 
 [TD Microarrays](./TD_Microarrays/README.md)
 
