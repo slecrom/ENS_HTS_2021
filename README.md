@@ -6,7 +6,7 @@
 2. [Connect to the IFB server](#connect-to-the-ifb-server)
 3. [Connect to the IFB Rstudio server](#connect-to-the-ifb-rstudio-server)
 
-## Connect to the IFB server
+## Connect to the IFB server 
 
 For this part of the practical, you will work remotely on the [IFB-core cluster](https://www.france-bioinformatique.fr/le-cluster-ifb-core/) located in **Orsay (IDRIS)**. Because it it a shared infrastructure you will have to pay attention to the command you use to start a job. **They all must start with *srun***.  
 You can refer to [IFB Core Cluster Documentation](https://ifb-elixirfr.gitlab.io/cluster/doc/) for more detail about logging, data management, job submission. 
