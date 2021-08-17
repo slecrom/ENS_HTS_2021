@@ -2,7 +2,7 @@
 
 Because IFB-core Cluster is a shared infrastructure you will have to pay attention to the command you use to start a job. **They all must start with "srun"**.
   
-You can refer to [IFB-core Cluster Documentation](https://ifb-elixirfr.gitlab.io/cluster/doc/) for more detail about logging, data management, job submission. 
+You can refer to [IFB-core Cluster documentation](https://ifb-elixirfr.gitlab.io/cluster/doc/) for more detail about logging, data management, job submission. 
 
 ## Sign in on the server
 
