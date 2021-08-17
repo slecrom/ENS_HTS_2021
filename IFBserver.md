@@ -6,19 +6,18 @@ You can refer to [IFB-core Cluster documentation](https://ifb-elixirfr.gitlab.io
 
 ## Sign in on the server
 
-  * On MacOS or Linux using a terminal window
+* On MacOS or Linux using a terminal window
 ```bash
 ssh <login>@core.cluster.france-bioinformatique.fr
 ```
 
-  * On Windows using for example [MobaXterm](https://mobaxterm.mobatek.net/)
-  
-> 1. In **Session** > **SSH**  
->    Remote Host : core.cluster.france-bioinformatique.fr  
->    Specify username : ticked and filled in **your login**
-> Advanced SSH settings : tick X11-Forwarding  
-> 2. Enter your password
-> 3. You should be logged on the IFB-core Cluster 
+* On Windows using for example [MobaXterm](https://mobaxterm.mobatek.net/)
+  1. In **Session** > **SSH**  
+     >Remote Host : core.cluster.france-bioinformatique.fr  
+     >Specify username : ticked and filled in **your login**
+     >Advanced SSH settings : tick X11-Forwarding  
+  2. Enter your password
+  3. You should be logged on the IFB-core Cluster 
 
 <p align="center">
 <img src="./ressources/MobaXtrem.png" width="100%">
