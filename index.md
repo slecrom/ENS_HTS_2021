@@ -1,4 +1,4 @@
-# Functional genomic data analysis: transcriptomics - Practical 2
+# Introduction
 
 This GitHub directory is the support for the course "Functional genomic data analysis: transcriptomics"
 
