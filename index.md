@@ -2,9 +2,13 @@
 
 This GitHub directory is the support for the course "Functional genomic data analysis: transcriptomics"
 
+***
+
 You can have direct access to the content of the practical work for:
 1. [Microarrays](./Microarrays/README.md)
 2. [RNAseq](./RNAseq/TD_RNAseq.md)
+
+***
 
 During this course, you will work remotely on the [IFB-core Cluster](https://www.france-bioinformatique.fr/en/ifb-core-cluster/) managed by the French Institute of Bioinformatics (IFB) the national bioinformatics infrastructure that provides support, deploys services, organizes training and carries out innovative developments for the life sciences communities.
 
