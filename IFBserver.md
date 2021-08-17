@@ -14,9 +14,9 @@ ssh <login>@core.cluster.france-bioinformatique.fr
 * On Windows using for example [MobaXterm](https://mobaxterm.mobatek.net/)
 
   1. In **Session** \> **SSH**  
-	 >Remote Host : core.cluster.france-bioinformatique.fr  
-	 >Specify username : ticked and filled in **your login**
-	 >Advanced SSH settings : tick X11-Forwarding  
+     >Remote Host : core.cluster.france-bioinformatique.fr  
+     >Specify username : ticked and filled in **your login**
+     >Advanced SSH settings : tick X11-Forwarding  
   2. Enter your password
   3. You should be logged on the IFB-core Cluster 
 
