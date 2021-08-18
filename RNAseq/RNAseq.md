@@ -1,6 +1,6 @@
 # Practical 2: Analysis of RNA-seq data
 
-1. [Introduction](#1.-introduction)
+1. [Introduction](#introduction)
 2. [Set up your working environment](#2.-set-up-your-working-environment)
 3. [Sequence quality controls](#QC)
 4. [Mapping of reads on the reference genome](#mapping)
@@ -8,7 +8,7 @@
 6. [Search for Differentially Expressed Genes](#DEtest)
 7. [Usefull commands to work on the cluster](#Troubleshooting)
 
-## 1. Introduction
+## Introduction
 
 ### Objective of this practical session
 
