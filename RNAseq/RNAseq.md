@@ -1,8 +1,8 @@
 # Practical 2: Analysis of RNA-seq data
 
 1. [Introduction](#introduction)
-2. [Set up your working environment](#2.-set-up-your-working-environment)
-3. [Sequence quality controls](#QC)
+2. [Set up your working environment](#set-up-your-working-environment)
+3. [Sequence quality controls](#sequence-quality-controls)
 4. [Mapping of reads on the reference genome](#mapping)
 5. [Alignments visualisation using a genome browser](#genome_browser)
 6. [Search for Differentially Expressed Genes](#DEtest)
@@ -22,7 +22,7 @@ Data used in these practical were collected from the following publication:
 
 >Guida, A., Lindstädt, C., Maguire, S. L., Ding, C., Higgins, D. G., Corton, N. J., Berriman, M., et al. (2011). Using RNA-seq to determine the transcriptional landscape and the hypoxic response of the pathogenic yeast *Candida parapsilosis*. [Guida *et al*. BMC Genomics 2011](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-12-628)
 
-## 2. Set up your working environment
+## Set up your working environment
 
 1. Connect to the IFB-core server. Look at the [tutorial](../IFBserver.md) to see how to proceed.
 
@@ -47,27 +47,25 @@ pwd
 /shared/home/<your login>/RNAseq
 ```
 
-## Sequence Quality Controls <a name="QC"></a>
+## Sequence quality controls
 
-#
+**Fastq** files are raw results from RNA-seq experiments. These files comprise all the **sequences** (or reads) obtained from the sequencer device (Illumina technology in this practical), together with **base quality scores** (PHRED scores).
 
-**Fastq** files are raw results from RNA-seq experiments. These files comprise all the **sequences** (or reads) obtained with the sequencer machine (Illumina technology here), together with **base quality scores** (PHRED scores).
-
-Two different files will be analyzed in this practical (see [Guida *et al*.](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-12-628) for more information) :
-- ***O2rep2_SRR352263.fastq*** refereed to a transcriptome analysis of yeasts *C. parapsilosis* under normoxic condition.
+Two different files will be analyzed during this practical from Guida *et al.* publication:
+- ***O2rep2_SRR352263.fastq*** refereed to a transcriptome analysis of yeasts *C. parapsilosis* under normoxic condition
 - ***noO2rep3_SRR352271.fastq*** refereed to a transcriptome analysis of yeasts *C. parapsilosis* under hypoxic condition 
 
-In a first step, quality controls will be perform on each FASTQ files in order to evaluate the quality of the sequences and identify potential problems that could impact the following analyses. Dedicated JAVA software will be used : [**FastQC 0.11.8**](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/) . Note that other software exists.
+In a first step, controls will be performed on each FASTQ files in order to evaluate the overall quality of the sequences and identify potential problems that could impact the following analyses. During this practical we will use the [**FastQC**](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/) software solution.
 
 FastQC is a quality control application for high throughput sequence data. It provides an interactive application to review the results of several different quality control checks, and create an **HTML based report**. The main functions of FastQC are:
+- **Import of data** from BAM, SAM or FastQ files (any variant)
+- Providing a **quick overview** to tell you in which areas there may be problems
+- **Summary graphs** and tables to quickly assess your data
+- Export of results to an **HTML based report**
+- **Offline operation mode** to allow automated generation of reports without running the interactive application
 
->  - **Import of data** from BAM, SAM or FastQ files (any variant)
->   - Providing a **quick overview** to tell you in which areas there may be problems
->   - **Summary graphs** and tables to quickly assess your data
->   - Export of results to an **HTML based permanent report**
->   - **Offline operation** to allow automated generation of reports without running the interactive application
-
-####  :heavy_exclamation_mark: TO DO: Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html)  and [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references, compare results between the two FASTQ files. Is there any concern related to the following analyses? :heavy_exclamation_mark:
+>Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
+>Compare results between the two FASTQ files. Is there any concern related to the following analyses?
 
 1. Create a new directory to store the output of fastqc
 
