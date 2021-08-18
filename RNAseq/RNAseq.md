@@ -64,7 +64,7 @@ FastQC is a quality control application for high throughput sequence data. It pr
 - **Offline operation mode** to allow automated generation of reports without running the interactive application
 
 ***
-What you have to do:
+:heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
 
 - [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
 
@@ -76,7 +76,6 @@ What you have to do:
 mkdir 1-QualityControl
 # Using the `tree` command, your directory should look like this:
 tree
-/shared/home/<your login>/RNAseq
 │
 └───1-QualityControl
 ```
@@ -108,11 +107,10 @@ srun fastqc /shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq -o 
 srun fastqc /shared/projects/ens_hts_2021/data/rnaseq/noO2rep3_SRR352271.fastq -o .
 ```
 
-At this point you should see the two new files in your directory using the `tree` command
+At this point you should see the new files in your directory using the `tree` command
 
 ```bash
 tree
-/shared/home/<your login>/RNAseq
 │
 └───1-QualityControl
 	└─── O2rep2_SRR352263.fastqc.html
