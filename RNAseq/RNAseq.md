@@ -28,10 +28,12 @@ Data used in these practical were collected from the following publication: Guid
 ```bash
 cd 
 ```
+
 3. Create a directory that will contain all results of the upcoming analyses
 ```bash
 mkdir RNAseq
 ```
+
 4. Go to the newly created directory
 ```bash
 cd RNAseq
@@ -41,7 +43,6 @@ cd RNAseq
 
 ```bash
 pwd
-
 /shared/home/<your login>/RNAseq
 ```
 
@@ -62,9 +63,9 @@ FastQC is a quality control application for high throughput sequence data. It pr
 - Export of results to an **HTML based report**
 - **Offline operation mode** to allow automated generation of reports without running the interactive application
 
->Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
->
->Compare results between the two FASTQ files. Is there any concern related to the following analyses?
+<span style="color:blue">Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
+<br>
+Compare results between the two FASTQ files. Is there any concern related to the following analyses?</span>
 
 1. Create a new directory to store the output of fastqc
 ```bash
