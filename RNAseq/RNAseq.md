@@ -1,7 +1,7 @@
 # Practical 2: Analysis of RNA-seq data
 
-1. [Introduction](#introduction)
-2. [Set up your working environment](#set-up-your-working-environment)
+1. [Introduction](#1.-introduction)
+2. [Set up your working environment](#2.-set-up-your-working-environment)
 3. [Sequence quality controls](#QC)
 4. [Mapping of reads on the reference genome](#mapping)
 5. [Alignments visualisation using a genome browser](#genome_browser)
