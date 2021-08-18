@@ -121,19 +121,19 @@ tree
 
 6. Download the HTML file reports on your local machine
 ```bash
-### OPEN A NEW TERMINAL
-## Create a directory where to put generated files on your computer
+## OPEN A NEW TERMINAL
+# Create a directory where to put generated files on your computer
 mkdir ~/Desktop/RNAseq/
 
-## Go to the location on your computer, where you want to put the data, for example:
+# Go to this directory
 cd ~/Desktop/RNAseq/
 
-## Download html report files
+# Download html report files from IFB server
 scp <login>@core.cluster.france-bioinformatique.fr:~/RNAseq/1-QualityControl/*.html .
 # Enter your password 
 ```
 
-7. Open the *.html* report with your favorite browser
+7. Open the *.html* report with your internet browser
 
 
 #
