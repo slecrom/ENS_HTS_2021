@@ -18,9 +18,7 @@ During this practical session, you will learn:
 
 ### Dataset used
 
-Data used in these practical were collected from the following publication:
-
->Guida, A., Lindstädt, C., Maguire, S. L., Ding, C., Higgins, D. G., Corton, N. J., Berriman, M., et al. (2011). Using RNA-seq to determine the transcriptional landscape and the hypoxic response of the pathogenic yeast *Candida parapsilosis*. [Guida *et al*. BMC Genomics 2011](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-12-628)
+Data used in these practical were collected from the following publication: Guida, A., Lindstädt, C., Maguire, S. L., Ding, C., Higgins, D. G., Corton, N. J., Berriman, M., et al. (2011). Using RNA-seq to determine the transcriptional landscape and the hypoxic response of the pathogenic yeast *Candida parapsilosis*. [Guida *et al*. BMC Genomics 2011](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-12-628)
 
 ## Set up your working environment
 
@@ -69,51 +67,46 @@ FastQC is a quality control application for high throughput sequence data. It pr
 >Compare results between the two FASTQ files. Is there any concern related to the following analyses?
 
 1. Create a new directory to store the output of fastqc
-
 ```bash
 mkdir 1-QualityControl
-```
-Using the `tree` command, your directory should look like this :
-
-```bash
+# Using the `tree` command, your directory should look like this:
+tree
 /shared/home/<your login>/RNAseq
 │
 └───1-QualityControl
 ```
 
 2. Go to this directory
-
 ```bash
 cd 1-QualityControl
 ```
-3. Get Fastqc available in your environment
 
+3. Make fastqc available in your environment
 ```bash
-module load fastqc/0.11.8
+module load fastqc/0.11.9
 ```
 
 4. Check the help page of the programme to see its usage and parameters 
-
 ```bash
 srun fastqc --help
 ```
 
 5. Run fastqc on each experiment files
-
-- /shared/projects/ens_hts_2020/data/rnaseq/O2rep2_SRR352263.fastq : **absolute path** to the first file
-- -o: creates all output files in the specified output directory. '.' means current directory.
-
 ```bash
-# O2 condition reads
-srun fastqc /shared/projects/ens_hts_2020/data/rnaseq/O2rep2_SRR352263.fastq -o .
+# O2 condition
+# Absolute path to the file: /shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq
+# -o option creates all output files in the specified output directory, '.' means current directory
+
+srun fastqc /shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq -o .
+
+# noO2 condition
+srun fastqc /shared/projects/ens_hts_2021/data/rnaseq/noO2rep3_SRR352271.fastq -o .
 ```
-```bash
-# noO2 condition reads
-srun fastqc /shared/projects/ens_hts_2020/data/rnaseq/noO2rep3_SRR352271.fastq -o .
-```
+
 At this point you should see the two new files in your directory using the `tree` command
 
 ```bash
+tree
 /shared/home/<your login>/RNAseq
 │
 └───1-QualityControl
@@ -122,8 +115,8 @@ At this point you should see the two new files in your directory using the `tree
 	└─── noO2rep3_SRR352271.fastqc.html
 	└─── noO2rep3_SRR352271.fastqc.zip
 ```
-6. Download the HTML file reports on your local machine
 
+6. Download the HTML file reports on your local machine
 ```bash
 ### OPEN A NEW TERMINAL
 ## Create a directory where to put generated files on your computer
