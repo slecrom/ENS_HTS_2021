@@ -1,90 +1,51 @@
-# Practical training – RNA-seq data analysis
+# Practical 2: Analysis of RNA-seq data
 
+1. [Introduction](#introduction)
+2. [Set up your working environment](#set-up-your-working-environment)
+3. [Sequence quality controls](#QC)
+4. [Mapping of reads on the reference genome](#mapping)
+5. [Alignments visualisation using a genome browser](#genome_browser)
+6. [Search for Differentially Expressed Genes](#DEtest)
+7. [Usefull commands to work on the cluster](#Troubleshooting)
 
-- [1. Introduction](#intro)
-- [2. Connect to the server and set up your working environment](#logging)
-- [3. Sequence Quality Controls](#QC)
-- [4. Mapping of Reads on the Reference Genome](#mapping)
-- [5. Alignments Visualization with a Genome Browser](#genome_browser)
-- [6. Search for Differentially Expressed Genes](#DEtest)
-- [7. Usefull commands to work on the cluster](#Troubleshooting)
+## 1. Introduction
 
-
-#
-
-## Introdution <a name="intro"></a>
-
-#
-
-### Objective of this practical session:
+### Objective of this practical session
 
 During this practical session, you will learn:
+  * To conduct an analysis of RNA-seq raw fastq files. You will first perform **quality control** of the sequencer file outputs before proceding to the **mapping** of the reads onto the reference genome.
+  * To perform statistical analysis of the gene expression matrices in order to identify differentialy expressed genes between two conditions.
 
-  * To conduct an analysis of RNA-seq raw fastq files. You will first perform **quality control** of the sequencing file before proceding to the **mapping** of the reads on the reference transcriptome.
-
-  * To perform statistical analysis of the gene expression matrices in order to identify differentialy expressed genes between two conditions
- 
-
-### Dataset used :
+### Dataset used
 
 Data used in these practical were collected from the following publication:
 
->Guida, A., Lindstädt, C., Maguire, S. L., Ding, C., Higgins, D. G., Corton, N. J., Berriman, M., et al. (2011). Using RNA-seq to determine the transcriptional landscape and the hypoxic response of the pathogenic yeast *Candida parapsilosis*. BMC genomics
->[Guida *et al*. BMC Genomics 2011 ](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-12-628)
+>Guida, A., Lindstädt, C., Maguire, S. L., Ding, C., Higgins, D. G., Corton, N. J., Berriman, M., et al. (2011). Using RNA-seq to determine the transcriptional landscape and the hypoxic response of the pathogenic yeast *Candida parapsilosis*. [Guida *et al*. BMC Genomics 2011](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-12-628)
 
-#
+## 2. Set up your working environment
 
-## Connect to the server and set up your working environment<a name="logging"></a>
+1. Connect to the IFB-core server. Look at the [tutorial](../IFBserver.md) to see how to proceed.
 
-For this part of the practical, you will work remotely on the [IFB-core cluster](https://www.france-bioinformatique.fr/le-cluster-ifb-core/) located in **Orsay (IDRIS)**. Because it it a shared infrastructure you will have to pay attention to the command you use to start a job. **They all must start with *srun***.  
-You can refer to [IFB Core Cluster Documentation](https://ifb-elixirfr.gitlab.io/cluster/doc/) for more detail about logging, data management, job submission. 
-
-#
-
-#### 1 - Sign in on the server
-  * On Windows using [MobaXterm](https://mobaxterm.mobatek.net/)
-  
-> 1. In **Session** > **SSH**  
-> Remote Host : core.cluster.france-bioinformatique.fr  
-> Specify username : ticked and filled in **your login**
-> Advanced SSH settings : tick X11-Forwarding  
-> 2. Enter your passwork
-> 3. You should be logged on the IFB Core cluster 
-
-<p align="center">
-
-<img src="./images/MobaXtrem.png" width="100%">
-
-</p>
-
-  * On MacOS and Linux
-```bash
-ssh <login>@core.cluster.france-bioinformatique.fr
-```
-
-#### 2 - Set up your working environment
-1. Go to your home directory
+2. Go to your home directory
 ```bash
 cd 
 ```
-2. Create a directory that will contain all results of the upcoming analyses.
+3. Create a directory that will contain all results of the upcoming analyses
 ```bash
 mkdir RNAseq
 ```
-3. Go to the newly created directory
+4. Go to the newly created directory
 ```bash
 cd RNAseq
 ```
 
-4. Check your are in the right directory using `pwd`:
+5. Check your are in the right directory using the `pwd` command:
 
 ```bash
 pwd
 
 /shared/home/<your login>/RNAseq
 ```
-
-#
 
 ## Sequence Quality Controls <a name="QC"></a>
 

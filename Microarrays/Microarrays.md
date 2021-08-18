@@ -1,6 +1,6 @@
 # Practical 1: Analysis of microarray data
 
-1. Connect to Rstudio serveur of the IFB
+1. Connect to Rstudio server of the IFB
 	Look at the [tutorial on how to connect to IFB-core Rstudio server](../IFBrstudio.md) to see how to proceed.
 
 2. Save the working notebook in your personal environment
