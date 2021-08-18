@@ -5,8 +5,8 @@ This GitHub directory is the used for the course "Functional genomic data analys
 ***
 
 You can have direct access to the content of the practical work for:
-1. [Microarrays](./Microarrays/README.md)
-2. [RNAseq](./RNAseq/TD_RNAseq.md)
+1. [Microarrays](./Microarrays/Microarrays.md)
+2. [RNAseq](./RNAseq/RNAseq.md)
 
 ***
 
