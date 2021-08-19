@@ -7,7 +7,7 @@
 5. [Post-processing of alignment files](#post-processing-of-alignment-files)
 6. [Alignments visualization using a genome browser](#Alignments-visualization-using-a-genome-browser)
 7. [Gene counts estimation](#gene-counts-estimation)
-8. [Search for Differentially Expressed Genes](#DEtest)
+8. [Search for differentially expressed genes](#search-for-differentially-expressed-genes)
 9. [Usefull commands to work on the cluster](#Troubleshooting)
 
 &nbsp;
@@ -29,6 +29,8 @@ Data used in these practical were collected from the following publication: Guid
 ## Set up your working environment
 
 1. Connect to the IFB-core server. Look at the [tutorial](../IFBserver.md) to see how to proceed.
+
+You can also look at the [Useful commands to work on the IFB-core Cluster](IFBcommands.md) page.
 
 2. Go to your home directory
 
@@ -86,17 +88,17 @@ FastQC is a quality control application for high throughput sequence data. It pr
 1. Create a new directory to store the output of fastqc
 
 ```bash
-mkdir 1-QualityControl
+mkdir 1-QC
 # Using the `tree` command, your directory should look like this:
 tree
 │
-└───1-QualityControl
+└───1-QC
 ```
 
 2. Go to this directory
 
 ```bash
-cd 1-QualityControl
+cd 1-QC
 ```
 
 3. Make fastqc available in your environment
@@ -129,7 +131,7 @@ At this point you should see the new files in your directory using the `tree` co
 ```bash
 tree
 │
-└───1-QualityControl
+└───1-QC
 	└─── O2rep2_SRR352263.fastqc.html
 	└─── O2rep2_SRR352263.fastqc.zip
 	└─── noO2rep3_SRR352271.fastqc.html
@@ -147,7 +149,7 @@ mkdir ~/Desktop/RNAseq/
 cd ~/Desktop/RNAseq/
 
 # Download html report files from IFB server
-scp <login>@core.cluster.france-bioinformatique.fr:~/RNAseq/1-QualityControl/*.html .
+scp <login>@core.cluster.france-bioinformatique.fr:~/RNAseq/1-QC/*.html .
 # Enter your password 
 ```
 
@@ -187,7 +189,7 @@ Your directory should now look like this :
 ```bash
 tree
 │
-└───1-QualityControl
+└───1-QC
 	└─── O2rep2_SRR352263.fastqc.html
 	└─── O2rep2_SRR352263.fastqc.zip
 	└─── noO2rep3_SRR352271.fastqc.html
@@ -229,7 +231,7 @@ Your directory should now look like this :
 ```bash
 tree
 .
-├── 1-QualityControl
+├── 1-QC
 │   ├── noO2rep3_SRR352271_fastqc.html
 │   ├── noO2rep3_SRR352271_fastqc.zip
 │   ├── O2rep2_SRR352263_fastqc.html
@@ -292,7 +294,7 @@ Your directory should now look like this :
 ```bash
 tree
 .
-├── 1-QualityControl
+├── 1-QC
 │   ├── noO2rep3_SRR352271_fastqc.html
 │   ├── noO2rep3_SRR352271_fastqc.zip
 │   ├── O2rep2_SRR352263_fastqc.html
@@ -383,14 +385,14 @@ To identify genes whose expression is different between hypoxic and normoxic con
 cd ../
 
 # Create a new directory to store results of the alignment
-mkdir 3-ORF_reads_count
+mkdir 3-Counts
 ```
 Your directory should now look like this :
 
 ```bash
 tree
 .
-├── 1-QualityControl
+├── 1-QC
 │   ├── noO2rep3_SRR352271_fastqc.html
 │   ├── noO2rep3_SRR352271_fastqc.zip
 │   ├── O2rep2_SRR352263_fastqc.html
@@ -404,13 +406,13 @@ tree
 │   ├── O2rep2_SRR352263_bowtie_mapping.sam
 │   ├── O2rep2_SRR352263_bowtie_sorted.bam
 │   └── O2rep2_SRR352263_bowtie_sorted.bam.bai
-└── 3-ORF_reads_count
+└── 3-Counts
 ```
 
 2. Go to the newly created directory
 
 ```bash
-cd  3-ORF_reads_count
+cd  3-Counts
 ```
 
 3. Calculate for each ORF the number of reads that were aligned to it
@@ -419,24 +421,24 @@ cd  3-ORF_reads_count
 module load bedtools/2.27.1
 
 # Counting matrix for the O2 condition
-srun bedtools multicov -bams ../2-Mapping/O2rep2_SRR352263_bowtie_sorted.bam -bed /shared/projects/ens_hts_2020/data/rnaseq/C_parapsilosis_ORFs.gff > O2rep2_SRR352263_gene_counts.gff
+srun bedtools multicov -bams ../2-Mapping/O2rep2_SRR352263_bowtie_sorted.bam -bed /shared/projects/ens_hts_2021/data/rnaseq/C_parapsilosis_ORFs.gff > O2rep2_SRR352263_gene_counts.gff
 # Output formating
 srun sed 's/^.*ID=//' O2rep2_SRR352263_gene_counts.gff > O2rep2_SRR352263_gene_counts.tab
 
 # Counting matrix for the noO2 condition
-srun bedtools multicov -bams ../2-Mapping/noO2rep3_SRR352271_bowtie_sorted.bam -bed /shared/projects/ens_hts_2020/data/rnaseq/C_parapsilosis_ORFs.gff > noO2rep3_SRR352271_gene_counts.gff
+srun bedtools multicov -bams ../2-Mapping/noO2rep3_SRR352271_bowtie_sorted.bam -bed /shared/projects/ens_hts_2021/data/rnaseq/C_parapsilosis_ORFs.gff > noO2rep3_SRR352271_gene_counts.gff
 # Output formating
 srun sed 's/^.*ID=//' noO2rep3_SRR352271_gene_counts.gff > noO2rep3_SRR352271_gene_counts.tab
 ```
 
 Take a look at the final counting matrices to see how the files are organised.
 
-At the end of RNA-seq data analysis your directory should looked like this :
+At the end of RNA-seq data analysis your directory should look like this :
 
 ```bash
 tree
 .
-├── 1-QualityControl
+├── 1-QC
 │   ├── noO2rep3_SRR352271_fastqc.html
 │   ├── noO2rep3_SRR352271_fastqc.zip
 │   ├── O2rep2_SRR352263_fastqc.html
@@ -450,7 +452,7 @@ tree
 │   ├── O2rep2_SRR352263_bowtie_mapping.sam
 │   ├── O2rep2_SRR352263_bowtie_sorted.bam
 │   └── O2rep2_SRR352263_bowtie_sorted.bam.bai
-└── 3-ORF_reads_count
+└── 3-Counts
     ├── noO2rep3_SRR352271_gene_counts.gff
     ├── noO2rep3_SRR352271_gene_counts.tab
     ├── O2rep2_SRR352263_gene_counts.gff
@@ -463,92 +465,30 @@ tree
 module unload fastqc/0.11.9 bowtie/1.2.2 samtools/1.9  bedtools/2.27.1
 ```
 
+&nbsp;
 
-## Search for Differentially Expressed Genes <a name="DEtest"></a>
+## Search for differentially expressed genes
 
-### Statistical analysis using DEseq2 R package
-In their article (Guida et al., 2011), the authors repeated the experiment 6 times for normoxic condition (with O2) and 4 times for hypoxic conditions (without O2). Results obtained for all experiments are combined in the file “/shared/projects/2020_eu_HTSdataAnalysis/rnaseq/count_data_diffAnalysis.txt”. This file will be used to search for differentially expressed genes using the **DESeq2** ([Love *et al*. 2014](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8)) R package. The [DESeq package](http://www.bioconductor.org/packages/release/bioc/html/DESeq2.html) provides methods to test for differential expression by use of the negative binonial distribution and a shrinkage estimator for the distribution’s variance.
+In their article (Guida et al., 2011), the authors repeated the experiment 6 times for normoxic condition (with O2) and 4 times for hypoxic conditions (without O2). Results obtained for all experiments are combined in the file “/shared/projects/ens_hts_2021/data/rnaseqcount_data_diffAnalysis.txt”. This file will be used to search for differentially expressed genes using the **DESeq2** ([Love *et al*. 2014](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8)) method.
 
-#### :heavy_exclamation_mark: TO DO : Search for differentially expressed genes using DESeq R package. How many genes are selected with different p-value thresholds (5%, 1%, etc.)? Check your results with IGV and use GOtermFinder (see practical on microarrays) to analyse the function of the selected genes. :heavy_exclamation_mark:
+The [DESeq package](http://www.bioconductor.org/packages/release/bioc/html/DESeq2.html) provides methods to test for differential expression by use of the negative binonial distribution and a shrinkage estimator for the distribution’s variance.
 
-1. Connect to Rstudio serveur of the IFB
+***
 
-In a web browser, connect to https://rstudio.cluster.france-bioinformatique.fr/auth-sign-in and log in using your user name and password (same as for ssh connection)
+> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
+> 
+> - [ ] Search for differentially expressed genes using DESeq R package
+> - [ ] How many genes are selected with different adjusted p-value thresholds (5%, 1%, etc.)?
+> - [ ] Check your results with IGV and use GOtermFinder (see [practical on microarrays](.../Microarrays.md)) to analyse the function of the selected genes
 
-<p align="center">
+***
 
-<img src="./images/Rstudio.png" width="30%">
+1. Connect to Rstudio server of the IFB
+	Look at the [tutorial on how to connect to IFB-core Rstudio server](../IFBrstudio.md) to see how to proceed.
 
-</p>
+2. Save the working notebook in your personal environment
 
-
-You will reached the familiar Rstudio environment :
-
-<p align="center">
-
-<img src="./images/RstudioScreen.png" width="50%">
-
-</p>
-
-2. Save the working notebook containing all the code in your personal environment
-
-    * In *File > Open File...* enter the path ***/shared/projects/ens_hts_2020/data/rnaseq/DEseq2.Rmd*** to open the notebook containing all the code needed for the practical.  
-    * Save it into your personal folder using *File > Save As* 
-
-3. Using your notebook, follow the [online tutorial](https://matthieumoreau06.github.io/HTS_M2-IMaLiS_2020/TD_RNAseq/Tutorial_DEseq2.html) to conduct the DE analysis
-
-----
-
-#
-
-## Usefull commands to work on the cluster <a name="Troubleshooting"></a>
-
-#
-
-These are some usefull command lines you may need to work on the cluster
-
-You can find more detailed information and video tutorial here [IFB Core Cluster Documentation](https://ifb-elixirfr.gitlab.io/cluster/doc/) 
-
-1. How to download/upload your data from the cluster :
-
-```bash
-# To download file/files from the cluster to your current directory
-scp  <your login>@core.cluster.france-bioinformatique.fr:/<absolute path to your file> 
-
-# To download a folder from the cluster to your current directory
- scp -r  <your login>@core.cluster.france-bioinformatique.fr:/<absolute path to your folder>
- 
-# To upload a file to the cluster
- scp <path to your local folder> <your login>@core.cluster.france-bioinformatique.fr:/<absolute path to the target folder>
-```
-
-2. To have information on your current job :
-
-```bash
-squeue -u <your login>
-```
-3. To list all your running/pending jobs :
-
-```bash
-squeue -u <your login> -t RUNNING
-
-squeue -u <your login> -t PENDING
-```
-
-4. To cancel/stop a job :
-
-```bash
-scancel <jobid>
-```
-
-5. To cancel all yout jobs:
-
-```bash
-scancel -u <your login>
-```
-
-6. To cancel all your pending jobs :
-
-```bash
-scancel -t PENDING -u <your login>
-```
+   * In *File > Open File...* enter the path ***/shared/projects/ens_hts_2021/data/rnaseq/DEseq2.Rmd*** to open the notebook containing all the code needed for the practical
+   * Save it into your personal folder using *File > Save As* 
+   
+3. Follow the instruction of the notebook to conduct the analysis. You can also visualize the final [report version](DEseq2_report.html) .
