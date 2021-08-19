@@ -8,7 +8,6 @@
 6. [Alignments visualization using a genome browser](#Alignments-visualization-using-a-genome-browser)
 7. [Gene counts estimation](#gene-counts-estimation)
 8. [Search for differentially expressed genes](#search-for-differentially-expressed-genes)
-9. [Usefull commands to work on the cluster](#Troubleshooting)
 
 &nbsp;
 
@@ -28,9 +27,7 @@ Data used in these practical were collected from the following publication: Guid
 
 ## Set up your working environment
 
-1. Connect to the IFB-core server. Look at the [tutorial](../IFBserver.md) to see how to proceed.
-
-You can also look at the [Useful commands to work on the IFB-core Cluster](IFBcommands.md) page.
+1. Connect to the IFB-core server. Look at the [tutorial](../IFBserver.md) to see how to proceed. You can also look at the [Useful commands to work on the IFB-core Cluster](IFBcommands.md) page.
 
 2. Go to your home directory
 
@@ -219,6 +216,13 @@ We will use the following options:
 > - **>** redirects the mapping output into a .sam file
 
 ```bash
+# We will use the following options:
+# - **-S** will output the result in SAM format
+# - **/shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis** specify the location and the **prefix (C_parapsilosis)** of the bowtie's index files
+# - **/shared/projects/ens_hts_2021/data/rnaseq/Fastqc/O2rep2_SRR352263.fastq.gz** location of the input fastq
+# - **2>** will save in a file some statistic about the aligment (#of reads mapped, etc...)
+# - **>** redirects the mapping output into a .sam file
+
 # Map the aerobic condition reads
 srun bowtie -S /shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq 2> O2rep2_SRR352263_bowtie_mapping.out > O2rep2_SRR352263_bowtie_mapping.sam
 
