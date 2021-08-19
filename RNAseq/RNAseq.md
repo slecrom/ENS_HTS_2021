@@ -8,7 +8,7 @@
 6. [Search for Differentially Expressed Genes](#DEtest)
 7. [Usefull commands to work on the cluster](#Troubleshooting)
 
-&nbsp; <!-- New section --------------------------------------------------- -->
+&nbsp; ########################################################################
 
 ## Introduction
 
