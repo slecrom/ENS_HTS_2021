@@ -3,7 +3,7 @@
 1. [Introduction](#introduction)
 2. [Set up your working environment](#set-up-your-working-environment)
 3. [Sequence quality controls](#sequence-quality-controls)
-4. [Mapping of reads on the reference genome](#mapping)
+4. [Mapping of reads on the reference genome](#Mapping-of-reads-on-the-reference-genome)
 5. [Alignments visualisation using a genome browser](#genome_browser)
 6. [Search for Differentially Expressed Genes](#DEtest)
 7. [Usefull commands to work on the cluster](#Troubleshooting)
@@ -74,6 +74,17 @@ FastQC is a quality control application for high throughput sequence data. It pr
 
 ***
 
+***
+
+> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
+> 
+> - [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
+> 
+> - [ ] Compare results between the two FASTQ files. Is there any concern related to the following analyses?
+
+***
+
+
 1. Create a new directory to store the output of fastqc
 ```bash
 mkdir 1-QualityControl
@@ -139,9 +150,7 @@ scp <login>@core.cluster.france-bioinformatique.fr:~/RNAseq/1-QualityControl/*.h
 7. Open the *.html* report with your internet browser
 
 &nbsp;
-## Mapping of Reads on the Reference Genome <a name="mapping"></a>
-
-#
+## Mapping of reads on the reference genome
 
 Once data quality is verified, reads will be mapped onto the reference genome of yeast *C. parapsilosis*. The **genome sequence** of *C. parapsilosis* and its **annotations** (locations of ORFs) were retrieved from the [CGD database](http://www.candidagenome.org/ "Candidat genome database").
 
