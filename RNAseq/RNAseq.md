@@ -216,12 +216,12 @@ We will use the following options:
 > - **>** redirects the mapping output into a .sam file
 
 ```bash
-# We will use the following options:
-# - "-S" will output the result in SAM format
-# - "/shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis" specify the location and the "prefix (C_parapsilosis)"" of the bowtie's index files
-# - "/shared/projects/ens_hts_2021/data/rnaseq/Fastqc/O2rep2_SRR352263.fastq.gz" location of the input fastq
-# - "2>" will save in a file some statistic about the aligment (#of reads mapped, etc...)
-# - "> redirects the mapping output into a .sam file
+## We will use the following options:
+# "-S" will output the result in SAM format
+# "/shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis" specify the location and the "prefix (C_parapsilosis)"" of the bowtie's index files
+# "/shared/projects/ens_hts_2021/data/rnaseq/Fastqc/O2rep2_SRR352263.fastq.gz" location of the input fastq
+# "2>" will save in a file some statistic about the aligment (#of reads mapped, etc...)
+# "> redirects the mapping output into a .sam file
 
 # Map the aerobic condition reads
 srun bowtie -S /shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq 2> O2rep2_SRR352263_bowtie_mapping.out > O2rep2_SRR352263_bowtie_mapping.sam
