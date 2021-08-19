@@ -477,7 +477,7 @@ The [DESeq package](http://www.bioconductor.org/packages/release/bioc/html/DESeq
 > 
 > - [ ] Search for differentially expressed genes using DESeq R package
 > - [ ] How many genes are selected with different adjusted p-value thresholds (5%, 1%, etc.)?
-> - [ ] Check your results with IGV and use GOtermFinder (see [practical on microarrays](../microarrays/Microarrays.md)) to analyse the function of the selected genes
+> - [ ] Check your results with IGV and use GOtermFinder (see [practical on microarrays](../Microarrays/Microarrays.md)) to analyse the function of the selected genes
 
 ***
 
