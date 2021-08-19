@@ -5,9 +5,10 @@
 3. [Sequence quality controls](#sequence-quality-controls)
 4. [Mapping of reads on the reference genome](#mapping-of-reads-on-the-reference-genome)
 5. [Post-processing of alignment files](#post-processing-of-alignment-files)
-6. [Alignments visualisation using a genome browser](#Alignments-visualization-using-a-genome-browser)
-7. [Search for Differentially Expressed Genes](#DEtest)
-8. [Usefull commands to work on the cluster](#Troubleshooting)
+6. [Alignments visualization using a genome browser](#Alignments-visualization-using-a-genome-browser)
+7. [Gene counts estimation](#gene-counts-estimation)
+8. [Search for Differentially Expressed Genes](#DEtest)
+9. [Usefull commands to work on the cluster](#Troubleshooting)
 
 &nbsp;
 
@@ -30,21 +31,25 @@ Data used in these practical were collected from the following publication: Guid
 1. Connect to the IFB-core server. Look at the [tutorial](../IFBserver.md) to see how to proceed.
 
 2. Go to your home directory
+
 ```bash
 cd 
 ```
 
 3. Create a directory that will contain all results of the upcoming analyses
+
 ```bash
 mkdir RNAseq
 ```
 
 4. Go to the newly created directory
+
 ```bash
 cd RNAseq
 ```
 
 5. Check your are in the right directory using the `pwd` command:
+
 ```bash
 pwd
 /shared/home/<your login>/RNAseq
@@ -79,6 +84,7 @@ FastQC is a quality control application for high throughput sequence data. It pr
 ***
 
 1. Create a new directory to store the output of fastqc
+
 ```bash
 mkdir 1-QualityControl
 # Using the `tree` command, your directory should look like this:
@@ -88,21 +94,25 @@ tree
 ```
 
 2. Go to this directory
+
 ```bash
 cd 1-QualityControl
 ```
 
 3. Make fastqc available in your environment
+
 ```bash
 module load fastqc/0.11.9
 ```
 
 4. Check the help page of the programme to see its usage and parameters 
+
 ```bash
 srun fastqc --help
 ```
 
 5. Run fastqc on each experiment files
+
 ```bash
 # O2 condition
 # Absolute path to the file: /shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq
@@ -127,6 +137,7 @@ tree
 ```
 
 6. Download the HTML file reports on your local machine
+
 ```bash
 ## OPEN A NEW TERMINAL
 # Create a directory where to put generated files on your computer
@@ -164,6 +175,7 @@ As an output, Bowtie provides a **SAM file**. SAM (Sequence Alignment/Map) is a 
 ***
 
 1. Create a new directory to store the output of bowtie
+
 ```bash
 #Go back to the parental directory "RNAseq"
 cd ../
@@ -184,11 +196,13 @@ tree
 ```
 
 2. Go to the newly created directory
+
 ```bash
 cd 2-Mapping
 ```
 
 3. Load Bowtie into your environment
+
 ```bash
 module load bowtie/1.2.2
 ```
@@ -273,88 +287,109 @@ srun samtools index O2rep2_SRR352263_bowtie_sorted.bam
 srun samtools index noO2rep3_SRR352271_bowtie_sorted.bam
 ```
 
+Your directory should now look like this :
+
+```bash
+tree
+.
+├── 1-QualityControl
+│   ├── noO2rep3_SRR352271_fastqc.html
+│   ├── noO2rep3_SRR352271_fastqc.zip
+│   ├── O2rep2_SRR352263_fastqc.html
+│   └── O2rep2_SRR352263_fastqc.zip
+└── 2-Mapping
+    ├── noO2rep3_SRR352271_bowtie_mapping.out
+    ├── noO2rep3_SRR352271_bowtie_mapping.sam
+    ├── noO2rep3_SRR352271_bowtie_sorted.bam
+    ├── noO2rep3_SRR352271_bowtie_sorted.bam.bai
+    ├── O2rep2_SRR352263_bowtie_mapping.out
+    ├── O2rep2_SRR352263_bowtie_mapping.sam
+    ├── O2rep2_SRR352263_bowtie_sorted.bam
+    └── O2rep2_SRR352263_bowtie_sorted.bam.bai
+```
+
+&nbsp;
+
 ## Alignments visualization using a genome browser
 
-The [Integrative Genomics Viewer](http://software.broadinstitute.org/software/igv/home) (IGV) is a high-performance **visualization tool** for interactive exploration of large, integrated genomic datasets. It supports a wide variety of data types, including array-based, next-generation sequence data and genomic annotations. In this practical, we will use IGV to visualize mapping results (see previous section). For that, **SAM files** has to be converted into **BAM files** (a binary version of SAM) and “sorted” according to the genomic sequence. We will use programs available in the [**Samtools 1.9**](http://samtools.sourceforge.net/) suite.
+The [Integrative Genomics Viewer](http://software.broadinstitute.org/software/igv/home) (IGV) is a high-performance **visualization tool** for interactive exploration of large genomic datasets. It supports a wide variety of data types, including array-based, high throughput sequence data and genomic annotations. In this practical, we will use IGV to visualize mapping results.
 
-#### :heavy_exclamation_mark: TO DO : Run the conversion of SAM files (obtain with BOWTIE) into BAM files and “sorted and indexed” BAM files. Run IGV. :heavy_exclamation_mark:
-
-3. Download the resulting bam and index files on your computer
+1. Download the necessary files on your computer
 
 ```bash
-# To download the bam files from the cluster to your current directory (on your own computer), **open a new shell and run**
+# To download files from the cluster to your current directory (on your own computer), **open a new shell and run**
 
+# First bam and bai alignement files
 scp  <your login>@core.cluster.france-bioinformatique.fr:~/RNAseq/2-Mapping/*.bam* .
-```
-You will also need the reference genome sequence and gene annotation files
 
-```bash
-# To download the bam files from the cluster to your current directory (on your own computer), **open a new shell and run**
-
-scp  <your login>@core.cluster.france-bioinformatique.fr:/shared/projects/ens_hts_2020/data/rnaseq/C_parapsilosis_CGD.fasta .
-
-scp  <your login>@core.cluster.france-bioinformatique.fr:/shared/projects/ens_hts_2020/data/rnaseq/C_parapsilosis_ORFs.gff .
+# Next the reference genome sequence and gene annotation files
+scp  <your login>@core.cluster.france-bioinformatique.fr:/shared/projects/ens_hts_2021/data/rnaseq/C_parapsilosis_CGD.fasta .
+scp  <your login>@core.cluster.france-bioinformatique.fr:/shared/projects/ens_hts_2021/data/rnaseq/C_parapsilosis_ORFs.gff .
 ```
 
-4. Visualize mapping results with IGV
+2. Visualize mapping results with IGV
 
 > Download [IGV](http://software.broadinstitute.org/software/igv/download) and follow the instalation instructions according to your OS
 
 Once the IGV program is launched, it is necessary to **import the reference genome** “Genomes/Create .genome File...” (see below). Select the FASTA file with the genomic sequence of *C. parapsilosis* “C_parapsilosis_CGD.fasta” (“Browse / FASTA file”) and **enter information regarding ORFs positions**, GFF file “C_parapsilosis_ORFs.gff” (“Browse Gene file”).  
-Finally, give a name to your genome (“Unique identifier” and “Descriptive name”) and press “OK”. Save the genome file in your home.  
-**Warning!** In order to IGV to create a index of your genome, you need to copy the reference genome FASTA file in writable directory.
+Finally, give a name to your genome (“Unique identifier” and “Descriptive name”) and press “OK”. Save the genome file in your home.
 
-
-<p align="center">
-
-<img src="./images/IGV_genome.png" width="70%">
-
-</p>
-
-*C. parapsilosis* genome is now loaded into IGV and can be selected from the top/left menu (see 1 below). The genomic sequence can be therefore explored, choosing for instance, a particular chromosome (see 2 below) or a genomic region (see 3). Note that gene annotations (ORF positions) are shown on the bottom of the window (see 4, blue lines) and you can obtain a more detailed view of the sequence using the cursor located on the top/right of the window, see 5).
+> **Warning!** In order to IGV to create an index of your genome, you need to copy the reference genome FASTA file in writable directory.
 
 <p align="center">
-
-<img src="./images/IGV_tools.png" width="50%">
-
+<img src="./images/IGV_genome.png" width="100%">
 </p>
 
-Mapping results (“.sorted.bam” files) can now be imported (“File / Load from File”):
+*C. parapsilosis* genome is now loaded into IGV and can be selected from the top/left menu (see 1 below). The genomic sequence can be therefore explored, choosing for instance, a particular chromosome (see 2 below) or a genomic region (see 3). Note that gene annotations (ORF positions) are shown at the bottom of the window (see 4, blue lines) and you can obtain a more detailed view of the sequence using the cursor located on the top/right of the window, see 5).
 
 <p align="center">
-
-<img src="./images/Reads_visualization.png" width="50%">
-
+<img src="./images/IGV_tools.png" width="100%">
 </p>
 
-#### :heavy_exclamation_mark: TO DO : Compare your results with those presented in the original publication: Did the authors use stranded-specific protocols? Can you observe differences between hypoxic and normoxic conditions? :heavy_exclamation_mark:
+Mapping results (“.sorted.bam” files) can now be imported (“File / Load from File”). Zoom in genomic regions in order to visualize read alignements.
 
+<p align="center">
+<img src="./images/Reads_visualization.png" width="100%">
+</p>
 
-#
+***
 
-## Search for Differentially Expressed Genes <a name="DEtest"></a>
+> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
+> 
+> - [ ] Compare your results with those presented in the original publication
+> - [ ] Did the authors use stranded-specific protocols?
+> - [ ] Can you observe differences between hypoxic and normoxic conditions?
 
-#
+***
 
-### Gene counts estimation
+&nbsp;
 
-To identify genes whose expression is different between hypoxic and normoxic conditions, we will **count and compare the number of reads mapped to each ORF**. A program available in the [**Bedtools 2.27.1**]( https://github.com/arq5x/bedtools2/blob/master/README.md) suite will be used.
+## Gene counts estimation
 
-#### :heavy_exclamation_mark: TO DO : Calculate for each ORF the number of reads that were aligned (normoxic and hypoxic conditions). :heavy_exclamation_mark:
+To identify genes whose expression is different between hypoxic and normoxic conditions, we will **count and compare the number of reads mapped to each ORF**. A program available in the [**Bedtools 2.27.1**]( https://github.com/arq5x/bedtools2) suite will be used for this purpose.
+
+***
+
+> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
+> 
+> - [ ] Calculate for each ORF the number of reads that were aligned (normoxic and hypoxic conditions).
+
+***
 
 1. Create a new directory to store the ORF count matrix
 
 ```bash
-#Go to the parental directory "RNAseq"
+# Go to the parental directory "RNAseq"
 cd ../
 
-#Create a new directory to store results of the alignment
+# Create a new directory to store results of the alignment
 mkdir 3-ORF_reads_count
 ```
 Your directory should now look like this :
 
 ```bash
-/shared/home/<your login>/RNAseq
+tree
+.
 ├── 1-QualityControl
 │   ├── noO2rep3_SRR352271_fastqc.html
 │   ├── noO2rep3_SRR352271_fastqc.zip
@@ -372,7 +407,7 @@ Your directory should now look like this :
 └── 3-ORF_reads_count
 ```
 
-2. Go to this directory
+2. Go to the newly created directory
 
 ```bash
 cd  3-ORF_reads_count
@@ -382,27 +417,25 @@ cd  3-ORF_reads_count
 
 ```bash
 module load bedtools/2.27.1
-```
 
-```bash
-srun bedtools multicov -bams ../2-Mapping/O2rep2_SRR352263_bowtie_sorted.bam \
--bed /shared/projects/ens_hts_2020/data/rnaseq/C_parapsilosis_ORFs.gff > O2rep2_SRR352263_gene_counts.gff
-
+# Counting matrix for the O2 condition
+srun bedtools multicov -bams ../2-Mapping/O2rep2_SRR352263_bowtie_sorted.bam -bed /shared/projects/ens_hts_2020/data/rnaseq/C_parapsilosis_ORFs.gff > O2rep2_SRR352263_gene_counts.gff
+# Output formating
 srun sed 's/^.*ID=//' O2rep2_SRR352263_gene_counts.gff > O2rep2_SRR352263_gene_counts.tab
-```
 
-```bash
-srun bedtools multicov -bams ../2-Mapping/noO2rep3_SRR352271_bowtie_sorted.bam \
--bed /shared/projects/ens_hts_2020/data/rnaseq/C_parapsilosis_ORFs.gff > noO2rep3_SRR352271_gene_counts.gff
-
+# Counting matrix for the noO2 condition
+srun bedtools multicov -bams ../2-Mapping/noO2rep3_SRR352271_bowtie_sorted.bam -bed /shared/projects/ens_hts_2020/data/rnaseq/C_parapsilosis_ORFs.gff > noO2rep3_SRR352271_gene_counts.gff
+# Output formating
 srun sed 's/^.*ID=//' noO2rep3_SRR352271_gene_counts.gff > noO2rep3_SRR352271_gene_counts.tab
 ```
 
-Take a look at the product files to see how the count files are organised
+Take a look at the final counting matrices to see how the files are organised.
 
-At the end of RNA-seq data analysis your directory should like this :
+At the end of RNA-seq data analysis your directory should looked like this :
 
 ```bash
+tree
+.
 ├── 1-QualityControl
 │   ├── noO2rep3_SRR352271_fastqc.html
 │   ├── noO2rep3_SRR352271_fastqc.zip
@@ -429,6 +462,9 @@ At the end of RNA-seq data analysis your directory should like this :
 ```bash
 module unload fastqc/0.11.9 bowtie/1.2.2 samtools/1.9  bedtools/2.27.1
 ```
+
+
+## Search for Differentially Expressed Genes <a name="DEtest"></a>
 
 ### Statistical analysis using DEseq2 R package
 In their article (Guida et al., 2011), the authors repeated the experiment 6 times for normoxic condition (with O2) and 4 times for hypoxic conditions (without O2). Results obtained for all experiments are combined in the file “/shared/projects/2020_eu_HTSdataAnalysis/rnaseq/count_data_diffAnalysis.txt”. This file will be used to search for differentially expressed genes using the **DESeq2** ([Love *et al*. 2014](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8)) R package. The [DESeq package](http://www.bioconductor.org/packages/release/bioc/html/DESeq2.html) provides methods to test for differential expression by use of the negative binonial distribution and a shrinkage estimator for the distribution’s variance.
