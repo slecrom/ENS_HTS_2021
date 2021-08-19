@@ -7,7 +7,7 @@ You can find more detailed information and video tutorial on [IFB-core Cluster D
 1. How to download/upload your data from the cluster
 
    ```bash
-   # To download file/files from the cluster to your current directory
+   # To download file/files from the cluster to your current directory (test)
    scp  <your login>@core.cluster.france-bioinformatique.fr:/<absolute path to your file> .
    
    # To download a folder from the cluster to your current directory
