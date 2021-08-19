@@ -7,7 +7,7 @@ You can find more detailed information and video tutorial on [IFB-core Cluster D
 1. How to download/upload your data from the cluster
 
    ```bash
-   # To download file/files from the cluster to your current directory (test)
+   # To download file/files from the cluster to your current directory
    scp  <your login>@core.cluster.france-bioinformatique.fr:/<absolute path to your file> .
    
    # To download a folder from the cluster to your current directory
@@ -19,27 +19,27 @@ You can find more detailed information and video tutorial on [IFB-core Cluster D
 
 2. How to get information on your current job
 
-```bash
-squeue -u <your login>
-```
+   ```bash
+   squeue -u <your login>
+   ```
 
 3. How to list all your running/pending jobs
 
-```bash
-squeue -u <your login> -t RUNNING
+   ```bash
+   squeue -u <your login> -t RUNNING
+   
+   squeue -u <your login> -t PENDING
+   ```
 
-squeue -u <your login> -t PENDING
-```
+4. How to cancel jobs
 
-4. How to cancel/stop jobs
-
-```bash
-# Cancel a specific job
-scancel <jobid>
-
-# Cancel all your jobs
-scancel -u <your login>
-
-# Cancel all your pending jobs
-scancel -t PENDING -u <your login>
-```
+   ```bash
+   # Cancel a specific job
+   scancel <jobid>
+   
+   # Cancel all your jobs
+   scancel -u <your login>
+   
+   # Cancel all your pending jobs
+   scancel -t PENDING -u <your login>
+   ```
