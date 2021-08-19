@@ -327,6 +327,7 @@ scp  <your login>@core.cluster.france-bioinformatique.fr:/shared/projects/ens_ht
 
 2. Visualize mapping results with IGV
 
+> On linux type "igv" in a terminal window to launch the program
 > Download [IGV](http://software.broadinstitute.org/software/igv/download) and follow the instalation instructions according to your OS
 
 Once the IGV program is launched, it is necessary to **import the reference genome** “Genomes/Create .genome File...” (see below). Select the FASTA file with the genomic sequence of *C. parapsilosis* “C_parapsilosis_CGD.fasta” (“Browse / FASTA file”) and **enter information regarding ORFs positions**, GFF file “C_parapsilosis_ORFs.gff” (“Browse Gene file”).  
