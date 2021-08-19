@@ -5,7 +5,7 @@
 3. [Sequence quality controls](#sequence-quality-controls)
 4. [Mapping of reads on the reference genome](#mapping-of-reads-on-the-reference-genome)
 5. [Post-processing of alignment files](#post-processing-of-alignment-files)
-6. [Alignments visualization using a genome browser](#Alignments-visualization-using-a-genome-browser)
+6. [Alignments visualization using a genome browser](#alignments-visualization-using-a-genome-browser)
 7. [Gene counts estimation](#gene-counts-estimation)
 8. [Search for differentially expressed genes](#search-for-differentially-expressed-genes)
 
