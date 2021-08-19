@@ -158,7 +158,7 @@ scp <login>@core.cluster.france-bioinformatique.fr:~/RNAseq/1-QC/*.html .
 
 Once data quality is verified, reads will be mapped onto the reference genome of yeast *C. parapsilosis*. The **genome sequence** of *C. parapsilosis* and its **annotations** (locations of ORFs) were retrieved from the [Candidat genome database (CGD)](http://www.candidagenome.org/).
 
-Different aligner and algorithms for RNA-seq analysis exist. We will use [**Bowtie 1.2.2**](http://bowtie-bio.sourceforge.net/manual.shtml) an ultrafast (memory-efficient) short read aligner. As an input, Bowtie uses a **Fastq file** (with reads to be aligned) and **“pre-built indexes”** of the reference genome. These indexes are named ***“C_parapsilosis.1.ebwt”***, ***“C_parapsilosis.2.ebwt”***, etc. They will allow boosting the alignment process.  
+Different aligner and algorithms for RNA-seq analysis exist. We will use [**Bowtie 1.2**](http://bowtie-bio.sourceforge.net/manual.shtml) an ultrafast (memory-efficient) short read aligner. As an input, Bowtie uses a **Fastq file** (with reads to be aligned) and **“pre-built indexes”** of the reference genome. These indexes are named ***“C_parapsilosis.1.ebwt”***, ***“C_parapsilosis.2.ebwt”***, etc. They will allow boosting the alignment process.  
 As an output, Bowtie provides a **SAM file**. SAM (Sequence Alignment/Map) is a generic format for storing large nucleotide sequence alignments.
 
 ***
@@ -244,7 +244,7 @@ tree
 
 ## Post-processing of alignment files
 
-In order to facilitate alignement manipulation, **SAM files** have to be converted into **BAM files** (a binary version) and alignements “sorted” according to their localisation on the genome and files indexed in order to speed up their access. We will use the [**Samtools 1.9**](http://www.htslib.org/doc/samtools.html) suite to perform these steps.
+In order to facilitate alignement manipulation, **SAM files** have to be converted into **BAM files** (a binary version) and alignements “sorted” according to their localisation on the genome and files indexed in order to speed up their access. We will use the [**Samtools**](http://www.htslib.org/doc/samtools.html) suite to perform these steps.
 
 ***
 
