@@ -9,4 +9,4 @@
    * Save it into your personal folder using *File > Save As* 
    
 
-3. Follow the instruction of the notebook to conduct the analysis. You can also visualize the final [report version](Microarrays.html) .
+3. Follow the instruction of the notebook to conduct the analysis. You can also visualize the final [report version](Microarrays_report_.html) .
