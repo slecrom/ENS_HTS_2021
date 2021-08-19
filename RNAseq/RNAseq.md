@@ -4,9 +4,10 @@
 2. [Set up your working environment](#set-up-your-working-environment)
 3. [Sequence quality controls](#sequence-quality-controls)
 4. [Mapping of reads on the reference genome](#mapping-of-reads-on-the-reference-genome)
-5. [Alignments visualisation using a genome browser](#Alignments-visualization-using-a-genome-browser)
-6. [Search for Differentially Expressed Genes](#DEtest)
-7. [Usefull commands to work on the cluster](#Troubleshooting)
+5. [Post-processing of alignment files](#post-processing-of-alignment-files)
+6. [Alignments visualisation using a genome browser](#Alignments-visualization-using-a-genome-browser)
+7. [Search for Differentially Expressed Genes](#DEtest)
+8. [Usefull commands to work on the cluster](#Troubleshooting)
 
 &nbsp;
 
@@ -193,6 +194,7 @@ module load bowtie/1.2.2
 ```
 
 4. Map the reads to the reference genome
+
 We will use the following options:
 > - **-S** will output the result in SAM format
 > - **/shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis** specify the location and the **prefix (C_parapsilosis)** of the bowtie's index files
@@ -211,33 +213,42 @@ srun bowtie -S /shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_paraps
 Your directory should now look like this :
 
 ```bash
-│
-└───1-QualityControl
-	└─── O2rep2_SRR352263.fastqc.html
-	└─── O2rep2_SRR352263.fastqc.zip
-	└─── noO2rep3_SRR352271.fastqc.html
-	└─── noO2rep3_SRR352271.fastqc.zip
-└─── 2-Mapping
-	└─── O2rep2_SRR352263_bowtie_mapping.sam
-	└─── O2rep2_SRR352263_bowtie_mapping.out
-	└─── noO2rep3_SRR352271_bowtie_mapping.sam
-	└─── noO2rep3_SRR352271_bowtie_mapping.out
+tree
+.
+├── 1-QualityControl
+│   ├── noO2rep3_SRR352271_fastqc.html
+│   ├── noO2rep3_SRR352271_fastqc.zip
+│   ├── O2rep2_SRR352263_fastqc.html
+│   └── O2rep2_SRR352263_fastqc.zip
+└── 2-Mapping
+    ├── noO2rep3_SRR352271_bowtie_mapping.out
+    ├── noO2rep3_SRR352271_bowtie_mapping.sam
+    ├── O2rep2_SRR352263_bowtie_mapping.out
+    └── O2rep2_SRR352263_bowtie_mapping.sam
 ```
 
 &nbsp;
-## Alignments visualization using a genome browser
 
-The [Integrative Genomics Viewer](http://software.broadinstitute.org/software/igv/home) (IGV) is a high-performance **visualization tool** for interactive exploration of large, integrated genomic datasets. It supports a wide variety of data types, including array-based, next-generation sequence data and genomic annotations. In this practical, we will use IGV to visualize mapping results (see previous section). For that, **SAM files** has to be converted into **BAM files** (a binary version of SAM) and “sorted” according to the genomic sequence. We will use programs available in the [**Samtools 1.9**](http://samtools.sourceforge.net/) suite.
+## Post-processing of alignment files
 
-#### :heavy_exclamation_mark: TO DO : Run the conversion of SAM files (obtain with BOWTIE) into BAM files and “sorted and indexed” BAM files. Run IGV. :heavy_exclamation_mark:
+In order to facilitate alignement manipulation, **SAM files** have to be converted into **BAM files** (a binary version) and alignements “sorted” according to their localisation on the genome and files indexed in order to speed up their access. We will use the [**Samtools 1.9**](http://www.htslib.org/doc/samtools.html) suite to perform these steps.
 
-1. Sort and Converte *.sam* into *.bam* files
+***
 
->- **samtools sort** Sort alignments by genomic coordinates
-> - **|** "pipe" the output of samtools sort to the next programme i.e. samtools view
+> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
+> 
+> - [ ] Convert SAM files into BAM files
+> - [ ] Sort and index BAM files
+
+***
+
+1. Sort and convert *.sam* into *.bam* files
+
+> - **samtools sort** sort alignments by genomic coordinates
+>   - **|** "pipe" the output of samtools sort to the next program
 > - **samtools view** will convert sam into bam
-> - **-b** specify the output to be in BAM format
->- **>** write the output in the bam file
+>   - option **-b** specify the output to be in BAM format
+>   - **>** write the output in the bam file
 
 ```bash
 module load samtools/1.9
@@ -250,17 +261,24 @@ srun samtools sort O2rep2_SRR352263_bowtie_mapping.sam | srun samtools view -b  
 # Sort and convert noO2 condition
 srun samtools sort noO2rep3_SRR352271_bowtie_mapping.sam | srun samtools view -b  > noO2rep3_SRR352271_bowtie_sorted.bam
 ```
-2. Create an index of the tow bam files
+2. Create indexes for the bam files
 
-> IGV requieres the to have an index of the bam file. The index of a bam file is name ***.bam.bai***
+> The index of a bam file is name ***.bam.bai***
 
 ```bash
-#Index the O2 condition
+# Index the O2 condition
 srun samtools index O2rep2_SRR352263_bowtie_sorted.bam
 
-#Index the noO2 condition
+# Index the noO2 condition
 srun samtools index noO2rep3_SRR352271_bowtie_sorted.bam
 ```
+
+## Alignments visualization using a genome browser
+
+The [Integrative Genomics Viewer](http://software.broadinstitute.org/software/igv/home) (IGV) is a high-performance **visualization tool** for interactive exploration of large, integrated genomic datasets. It supports a wide variety of data types, including array-based, next-generation sequence data and genomic annotations. In this practical, we will use IGV to visualize mapping results (see previous section). For that, **SAM files** has to be converted into **BAM files** (a binary version of SAM) and “sorted” according to the genomic sequence. We will use programs available in the [**Samtools 1.9**](http://samtools.sourceforge.net/) suite.
+
+#### :heavy_exclamation_mark: TO DO : Run the conversion of SAM files (obtain with BOWTIE) into BAM files and “sorted and indexed” BAM files. Run IGV. :heavy_exclamation_mark:
+
 3. Download the resulting bam and index files on your computer
 
 ```bash
