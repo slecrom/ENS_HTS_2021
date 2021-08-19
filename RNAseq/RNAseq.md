@@ -16,7 +16,7 @@ During this practical session, you will learn:
   * To conduct an analysis of RNA-seq raw fastq files. You will first perform **quality control** of the sequencer file outputs before proceding to the **mapping** of the reads onto the reference genome.
   * To perform statistical analysis of the gene expression matrices in order to identify differentialy expressed genes between two conditions.
 
-### Dataset used
+### Dataset
 
 Data used in these practical were collected from the following publication: Guida, A., Lindstädt, C., Maguire, S. L., Ding, C., Higgins, D. G., Corton, N. J., Berriman, M., et al. (2011). Using RNA-seq to determine the transcriptional landscape and the hypoxic response of the pathogenic yeast *Candida parapsilosis*. [Guida *et al*. BMC Genomics 2011](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-12-628)
 
@@ -40,7 +40,6 @@ cd RNAseq
 ```
 
 5. Check your are in the right directory using the `pwd` command:
-
 ```bash
 pwd
 /shared/home/<your login>/RNAseq
@@ -64,11 +63,13 @@ FastQC is a quality control application for high throughput sequence data. It pr
 - **Offline operation mode** to allow automated generation of reports without running the interactive application
 
 ***
+
 :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
 
 - [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
 
 - [ ] Compare results between the two FASTQ files. Is there any concern related to the following analyses?
+
 ***
 
 1. Create a new directory to store the output of fastqc
