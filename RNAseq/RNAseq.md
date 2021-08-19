@@ -208,13 +208,6 @@ module load bowtie/1.2.2
 
 4. Map the reads to the reference genome
 
-We will use the following options:
-> - **-S** will output the result in SAM format
-> - **/shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis** specify the location and the **prefix (C_parapsilosis)** of the bowtie's index files
-> - **/shared/projects/ens_hts_2021/data/rnaseq/Fastqc/O2rep2_SRR352263.fastq.gz** location of the input fastq
-> - **2>** will save in a file some statistic about the aligment (#of reads mapped, etc...)
-> - **>** redirects the mapping output into a .sam file
-
 ```bash
 ## We will use the following options:
 # "-S" will output the result in SAM format
@@ -264,26 +257,25 @@ In order to facilitate alignement manipulation, **SAM files** have to be convert
 
 1. Sort and convert *.sam* into *.bam* files
 
-> - **samtools sort** sort alignments by genomic coordinates
->   - **|** "pipe" the output of samtools sort to the next program
-> - **samtools view** will convert sam into bam
->   - option **-b** specify the output to be in BAM format
->   - **>** write the output in the bam file
-
 ```bash
+## "samtools sort" sort alignments by genomic coordinates
+# "|" "pipe" the output of samtools sort to the next program
+## "samtools view" will convert sam into bam
+# option "-b" specify the output to be in BAM format
+# ">"" write the output in the bam file
+
 module load samtools/1.9
-```
 
-```bash
 # Sort and convert O2 condition
 srun samtools sort O2rep2_SRR352263_bowtie_mapping.sam | srun samtools view -b  > O2rep2_SRR352263_bowtie_sorted.bam
 
 # Sort and convert noO2 condition
 srun samtools sort noO2rep3_SRR352271_bowtie_mapping.sam | srun samtools view -b  > noO2rep3_SRR352271_bowtie_sorted.bam
 ```
+
 2. Create indexes for the bam files
 
-> The index of a bam file is name ***.bam.bai***
+The index of a bam file is name ***.bam.bai***
 
 ```bash
 # Index the O2 condition
@@ -473,7 +465,7 @@ module unload fastqc/0.11.9 bowtie/1.2.2 samtools/1.9  bedtools/2.27.1
 
 ## Search for differentially expressed genes
 
-In their article (Guida et al., 2011), the authors repeated the experiment 6 times for normoxic condition (with O2) and 4 times for hypoxic conditions (without O2). Results obtained for all experiments are combined in the file “/shared/projects/ens_hts_2021/data/rnaseqcount_data_diffAnalysis.txt”. This file will be used to search for differentially expressed genes using the **DESeq2** ([Love *et al*. 2014](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8)) method.
+In their article (Guida et al., 2011), the authors repeated the experiment 6 times for normoxic condition (with O2) and 4 times for hypoxic conditions (without O2). Results obtained for all experiments are combined in the file “rnaseqcount_data_diffAnalysis.txt”. This file will be used to search for differentially expressed genes using the **DESeq2** ([Love *et al*. 2014](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8)) method.
 
 The [DESeq package](http://www.bioconductor.org/packages/release/bioc/html/DESeq2.html) provides methods to test for differential expression by use of the negative binonial distribution and a shrinkage estimator for the distribution’s variance.
 
@@ -483,7 +475,7 @@ The [DESeq package](http://www.bioconductor.org/packages/release/bioc/html/DESeq
 > 
 > - [ ] Search for differentially expressed genes using DESeq R package
 > - [ ] How many genes are selected with different adjusted p-value thresholds (5%, 1%, etc.)?
-> - [ ] Check your results with IGV and use GOtermFinder (see [practical on microarrays](.../Microarrays.md)) to analyse the function of the selected genes
+> - [ ] Check your results with IGV and use GOtermFinder (see [practical on microarrays](../Microarrays.md)) to analyse the function of the selected genes
 
 ***
 
