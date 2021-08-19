@@ -69,7 +69,6 @@ FastQC is a quality control application for high throughput sequence data. It pr
 > :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
 > 
 > - [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
-> 
 > - [ ] Compare results between the two FASTQ files. Is there any concern related to the following analyses?
 
 ***
@@ -150,40 +149,25 @@ As an output, Bowtie provides a **SAM file**. SAM (Sequence Alignment/Map) is a 
 
 > :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
 > 
-> - [ ] Run sequence alignments with Bowtie using the two Fastq files.
-> - [ ] Compare alignment statistic outputs between the two files.
-> - [ ] Is there any concern related to the following analyses?
+> - [ ] Run sequence alignments with Bowtie using the two Fastq files
+> - [ ] While Bowtie is running, take a look at [Bowtie documentation](http://bowtie-bio.sourceforge.net/manual.shtml#the-bowtie-aligner) that describes the options (particularly the *-m*)
+> - [ ] Look at the alignment statistic outputs (file .out)
+> - [ ] What is the proportion of reads aligned on the reference genome?
+> - [ ] Is there any concern to take into account for the following analyses?
 
 ***
 
-***
-
-> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
-> 
-> - [ ] Run sequence alignments with Bowtie using the two Fastq files.
->
-> - [ ] Compare alignment statistic outputs between the two files.
->
-> - [ ] Is there any concern related to the following analyses?
-
-***
-
-
-#### :heavy_exclamation_mark: TO DO :  Take a look at Bowtie documentation and describe the specified options (*-m* in particular). What is the proportion of reads aligned on the reference genome? :heavy_exclamation_mark:
-
-1. Create a new directory to store the output of fastqc
-
+1. Create a new directory to store the output of bowtie
 ```bash
-#Go to the parental directory "RNAseq"
+#Go back to the parental directory "RNAseq"
 cd ../
 
 #Create a new directory to store results of the alignment
 mkdir 2-Mapping
 ```
 Your directory should now look like this :
-
 ```bash
-/shared/home/<your login>/RNAseq
+tree
 │
 └───1-QualityControl
 	└─── O2rep2_SRR352263.fastqc.html
@@ -193,41 +177,37 @@ Your directory should now look like this :
 └─── 2-Mapping
 ```
 
-2. Go to this directory
-
+2. Go to the newly created directory
 ```bash
 cd 2-Mapping
 ```
-3. Load Bowtie into your environment
 
+3. Load Bowtie into your environment
 ```bash
 module load bowtie/1.2.2
 ```
 
 4. Map the reads to the reference genome
-
->- **-S** will output the result in SAM format
->- **/shared/projects/ens_hts_2020/data/rnaseq/bowtie_indexes/C_parapsilosis** specify the location and the **prefix (C_parapsilosis)** of the bowtie's index files
->- **/shared/projects/ens_hts_2020/data/rnaseq/Fastqc/O2rep2_SRR352263.fastq.gz** location of the input fastq
->- **2>** will print some statistic about the aligment (#of reads mapped, etc...)
->- **>** redirects the mapping output into a .sam file
+We will use the following options:
+> - **-S** will output the result in SAM format
+> - **/shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis** specify the location and the **prefix (C_parapsilosis)** of the bowtie's index files
+> - **/shared/projects/ens_hts_2021/data/rnaseq/Fastqc/O2rep2_SRR352263.fastq.gz** location of the input fastq
+> - **2>** will save in a file some statistic about the aligment (#of reads mapped, etc...)
+> - **>** redirects the mapping output into a .sam file
 
 ```bash
 # Map the aerobic condition reads
-srun bowtie -S /shared/projects/ens_hts_2020/data/rnaseq/bowtie_indexes/C_parapsilosis \
-	/shared/projects/ens_hts_2020/data/rnaseq/O2rep2_SRR352263.fastq 2> O2rep2_SRR352263_bowtie_mapping.out > O2rep2_SRR352263_bowtie_mapping.sam
-```
+srun bowtie -S /shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis \
+	/shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq 2> O2rep2_SRR352263_bowtie_mapping.out > O2rep2_SRR352263_bowtie_mapping.sam
 
-```bash
 # Map the hypoxic condition reads
-srun bowtie -S /shared/projects/ens_hts_2020/data/rnaseq/bowtie_indexes/C_parapsilosis \
- 	/shared/projects/ens_hts_2020/data/rnaseq/noO2rep3_SRR352271.fastq 2> noO2rep3_SRR352271_bowtie_mapping.out > noO2rep3_SRR352271_bowtie_mapping.sam
+srun bowtie -S /shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis \
+ 	/shared/projects/ens_hts_2021/data/rnaseq/noO2rep3_SRR352271.fastq 2> noO2rep3_SRR352271_bowtie_mapping.out > noO2rep3_SRR352271_bowtie_mapping.sam
 ```
 
 Your directory should now look like this :
 
 ```bash
-/shared/home/<your login>/RNAseq
 │
 └───1-QualityControl
 	└─── O2rep2_SRR352263.fastqc.html
@@ -241,11 +221,8 @@ Your directory should now look like this :
 	└─── noO2rep3_SRR352271_bowtie_mapping.out
 ```
 
-#
-
+&nbsp;
 ## Alignments Visualization with a Genome Browser <a name="genome_browser"></a>
-
-#
 
 The [Integrative Genomics Viewer](http://software.broadinstitute.org/software/igv/home) (IGV) is a high-performance **visualization tool** for interactive exploration of large, integrated genomic datasets. It supports a wide variety of data types, including array-based, next-generation sequence data and genomic annotations. In this practical, we will use IGV to visualize mapping results (see previous section). For that, **SAM files** has to be converted into **BAM files** (a binary version of SAM) and “sorted” according to the genomic sequence. We will use programs available in the [**Samtools 1.9**](http://samtools.sourceforge.net/) suite.
 
@@ -429,7 +406,7 @@ At the end of RNA-seq data analysis your directory should like this :
 4. Unload the tools you used
 
 ```bash
-module unload samtools/1.9 bowtie/1.2.2 bedtools/2.27.1
+module unload fastqc/0.11.9 samtools/1.9 bowtie/1.2.2 bedtools/2.27.1
 ```
 
 ### Statistical analysis using DEseq2 R package
