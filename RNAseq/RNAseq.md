@@ -27,7 +27,7 @@ Data used in these practical were collected from the following publication: Guid
 
 ## Set up your working environment
 
-1. Connect to the IFB-core server. Look at the [tutorial](../IFBserver.md) to see how to proceed. You can also look at the [Useful commands to work on the IFB-core Cluster](IFBcommands.md) page.
+1. Connect to the IFB-core server. Look at the [tutorial](../IFBserver.md) to see how to proceed. You can also look at the [useful commands to work on the IFB-core Cluster](../IFBcommands.md) page.
 
 2. Go to your home directory
 
