@@ -8,7 +8,7 @@
 6. [Search for Differentially Expressed Genes](#DEtest)
 7. [Usefull commands to work on the cluster](#Troubleshooting)
 
-&nbsp;
+&nbsp; <!-- New section --------------------------------------------------- -->
 
 ## Introduction
 
@@ -50,6 +50,7 @@ pwd
 ```
 
 &nbsp;
+
 ## Sequence quality controls
 
 **Fastq** files are raw results from RNA-seq experiments. These files comprise all the **sequences** (or reads) obtained from the sequencer device (Illumina technology in this practical), together with **base quality scores** (PHRED scores).
@@ -141,6 +142,7 @@ scp <login>@core.cluster.france-bioinformatique.fr:~/RNAseq/1-QualityControl/*.h
 7. Open the *.html* report with your internet browser
 
 &nbsp;
+
 ## Mapping of reads on the reference genome
 
 Once data quality is verified, reads will be mapped onto the reference genome of yeast *C. parapsilosis*. The **genome sequence** of *C. parapsilosis* and its **annotations** (locations of ORFs) were retrieved from the [Candidat genome database (CGD)](http://www.candidagenome.org/).
