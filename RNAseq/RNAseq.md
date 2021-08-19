@@ -66,16 +66,6 @@ FastQC is a quality control application for high throughput sequence data. It pr
 
 ***
 
-:heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
-
-- [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
-
-- [ ] Compare results between the two FASTQ files. Is there any concern related to the following analyses?
-
-***
-
-***
-
 > :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
 > 
 > - [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
@@ -83,7 +73,6 @@ FastQC is a quality control application for high throughput sequence data. It pr
 > - [ ] Compare results between the two FASTQ files. Is there any concern related to the following analyses?
 
 ***
-
 
 1. Create a new directory to store the output of fastqc
 ```bash
@@ -152,12 +141,35 @@ scp <login>@core.cluster.france-bioinformatique.fr:~/RNAseq/1-QualityControl/*.h
 &nbsp;
 ## Mapping of reads on the reference genome
 
-Once data quality is verified, reads will be mapped onto the reference genome of yeast *C. parapsilosis*. The **genome sequence** of *C. parapsilosis* and its **annotations** (locations of ORFs) were retrieved from the [CGD database](http://www.candidagenome.org/ "Candidat genome database").
+Once data quality is verified, reads will be mapped onto the reference genome of yeast *C. parapsilosis*. The **genome sequence** of *C. parapsilosis* and its **annotations** (locations of ORFs) were retrieved from the [Candidat genome database (CGD)](http://www.candidagenome.org/).
 
-Different aligner and algorithms for RNA-seq analysis exist. We will use [**Bowtie 1.2.2**](http://bowtie-bio.sourceforge.net/manual.shtml)  an ultrafast (memory-efficient) short read aligner. As an input, Bowtie uses a **Fastq file** (with reads to be aligned) and **“pre-built indexes”** of the reference genome. These indexes are named ***“C_parapsilosis.1.ebwt”***, ***“C_parapsilosis.2.ebwt”***, etc. They will allow boosting the alignment process.  
+Different aligner and algorithms for RNA-seq analysis exist. We will use [**Bowtie 1.2.2**](http://bowtie-bio.sourceforge.net/manual.shtml) an ultrafast (memory-efficient) short read aligner. As an input, Bowtie uses a **Fastq file** (with reads to be aligned) and **“pre-built indexes”** of the reference genome. These indexes are named ***“C_parapsilosis.1.ebwt”***, ***“C_parapsilosis.2.ebwt”***, etc. They will allow boosting the alignment process.  
 As an output, Bowtie provides a **SAM file**. SAM (Sequence Alignment/Map) is a generic format for storing large nucleotide sequence alignments.
 
-#### :heavy_exclamation_mark: TO DO : Run sequence alignments with Bowtie using the two FASTQ files. Take a look at Bowtie documentation and describe the specified options (*-m* in particular). What is the proportion of reads aligned on the reference genome? :heavy_exclamation_mark:
+***
+
+> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
+> 
+> - [ ] Run sequence alignments with Bowtie using the two Fastq files.
+> - [ ] Compare alignment statistic outputs between the two files.
+> - [ ] Is there any concern related to the following analyses?
+
+***
+
+***
+
+> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
+> 
+> - [ ] Run sequence alignments with Bowtie using the two Fastq files.
+>
+> - [ ] Compare alignment statistic outputs between the two files.
+>
+> - [ ] Is there any concern related to the following analyses?
+
+***
+
+
+#### :heavy_exclamation_mark: TO DO :  Take a look at Bowtie documentation and describe the specified options (*-m* in particular). What is the proportion of reads aligned on the reference genome? :heavy_exclamation_mark:
 
 1. Create a new directory to store the output of fastqc
 
