@@ -8,7 +8,7 @@
 6. [Search for Differentially Expressed Genes](#DEtest)
 7. [Usefull commands to work on the cluster](#Troubleshooting)
 
-&nbsp; ########################################################################
+&nbsp;
 
 ## Introduction
 
@@ -202,12 +202,10 @@ We will use the following options:
 
 ```bash
 # Map the aerobic condition reads
-srun bowtie -S /shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis \
-	/shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq 2> O2rep2_SRR352263_bowtie_mapping.out > O2rep2_SRR352263_bowtie_mapping.sam
+srun bowtie -S /shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq 2> O2rep2_SRR352263_bowtie_mapping.out > O2rep2_SRR352263_bowtie_mapping.sam
 
 # Map the hypoxic condition reads
-srun bowtie -S /shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis \
- 	/shared/projects/ens_hts_2021/data/rnaseq/noO2rep3_SRR352271.fastq 2> noO2rep3_SRR352271_bowtie_mapping.out > noO2rep3_SRR352271_bowtie_mapping.sam
+srun bowtie -S /shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/ens_hts_2021/data/rnaseq/noO2rep3_SRR352271.fastq 2> noO2rep3_SRR352271_bowtie_mapping.out > noO2rep3_SRR352271_bowtie_mapping.sam
 ```
 
 Your directory should now look like this :
