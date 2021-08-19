@@ -3,12 +3,13 @@
 1. [Introduction](#introduction)
 2. [Set up your working environment](#set-up-your-working-environment)
 3. [Sequence quality controls](#sequence-quality-controls)
-4. [Mapping of reads on the reference genome](#Mapping-of-reads-on-the-reference-genome)
-5. [Alignments visualisation using a genome browser](#genome_browser)
+4. [Mapping of reads on the reference genome](#mapping-of-reads-on-the-reference-genome)
+5. [Alignments visualisation using a genome browser](#Alignments-visualization-using-a-genome-browser)
 6. [Search for Differentially Expressed Genes](#DEtest)
 7. [Usefull commands to work on the cluster](#Troubleshooting)
 
 &nbsp;
+
 ## Introduction
 
 ### Objective of this practical session
@@ -20,6 +21,8 @@ During this practical session, you will learn:
 ### Dataset
 
 Data used in these practical were collected from the following publication: Guida, A., Lindstädt, C., Maguire, S. L., Ding, C., Higgins, D. G., Corton, N. J., Berriman, M., et al. (2011). Using RNA-seq to determine the transcriptional landscape and the hypoxic response of the pathogenic yeast *Candida parapsilosis*. [Guida *et al*. BMC Genomics 2011](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-12-628)
+
+&nbsp;
 
 ## Set up your working environment
 
@@ -222,7 +225,7 @@ Your directory should now look like this :
 ```
 
 &nbsp;
-## Alignments Visualization with a Genome Browser <a name="genome_browser"></a>
+## Alignments visualization using a genome browser
 
 The [Integrative Genomics Viewer](http://software.broadinstitute.org/software/igv/home) (IGV) is a high-performance **visualization tool** for interactive exploration of large, integrated genomic datasets. It supports a wide variety of data types, including array-based, next-generation sequence data and genomic annotations. In this practical, we will use IGV to visualize mapping results (see previous section). For that, **SAM files** has to be converted into **BAM files** (a binary version of SAM) and “sorted” according to the genomic sequence. We will use programs available in the [**Samtools 1.9**](http://samtools.sourceforge.net/) suite.
 
@@ -406,7 +409,7 @@ At the end of RNA-seq data analysis your directory should like this :
 4. Unload the tools you used
 
 ```bash
-module unload fastqc/0.11.9 samtools/1.9 bowtie/1.2.2 bedtools/2.27.1
+module unload fastqc/0.11.9 bowtie/1.2.2 samtools/1.9  bedtools/2.27.1
 ```
 
 ### Statistical analysis using DEseq2 R package
