@@ -8,6 +8,7 @@
 6. [Search for Differentially Expressed Genes](#DEtest)
 7. [Usefull commands to work on the cluster](#Troubleshooting)
 
+&nbsp;
 ## Introduction
 
 ### Objective of this practical session
@@ -45,6 +46,7 @@ pwd
 /shared/home/<your login>/RNAseq
 ```
 
+&nbsp;
 ## Sequence quality controls
 
 **Fastq** files are raw results from RNA-seq experiments. These files comprise all the **sequences** (or reads) obtained from the sequencer device (Illumina technology in this practical), together with **base quality scores** (PHRED scores).
@@ -136,9 +138,7 @@ scp <login>@core.cluster.france-bioinformatique.fr:~/RNAseq/1-QualityControl/*.h
 
 7. Open the *.html* report with your internet browser
 
-
-#
-
+&nbsp;
 ## Mapping of Reads on the Reference Genome <a name="mapping"></a>
 
 #
