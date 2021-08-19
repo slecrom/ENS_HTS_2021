@@ -366,7 +366,7 @@ Mapping results (“.sorted.bam” files) can now be imported (“File / Load fr
 
 ## Gene counts estimation
 
-To identify genes whose expression is different between hypoxic and normoxic conditions, we will **count and compare the number of reads mapped to each ORF**. A program available in the [**Bedtools 2.27.1**]( https://github.com/arq5x/bedtools2) suite will be used for this purpose.
+To identify genes whose expression is different between hypoxic and normoxic conditions, we will **count and compare the number of reads mapped to each ORF**. A program available in the [**Bedtools**]( https://github.com/arq5x/bedtools2) suite will be used for this purpose.
 
 ***
 
