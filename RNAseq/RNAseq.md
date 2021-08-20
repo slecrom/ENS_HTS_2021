@@ -73,19 +73,6 @@ FastQC is a quality control application for high throughput sequence data. It pr
 - Export of results to an **HTML based report**
 - **Offline operation mode** to allow automated generation of reports without running the interactive application
 
-***
-
->  **What you have to do:** 
-> 
-> - [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
-> - [ ] Compare results between the two FASTQ files. Is there any concern related to the following analyses?
-
-***
-
-**What you have to do:** 
-- [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
-- [ ] &nbsp; Compare results between the two FASTQ files. Is there any concern related to the following analyses?
-
 > ***
 >
 > **What you have to do:** 
@@ -173,17 +160,17 @@ Once data quality is verified, reads will be mapped onto the reference genome of
 Different aligner and algorithms for RNA-seq analysis exist. We will use [**Bowtie 1.2**](http://bowtie-bio.sourceforge.net/manual.shtml) an ultrafast (memory-efficient) short read aligner. As an input, Bowtie uses a **Fastq file** (with reads to be aligned) and **“pre-built indexes”** of the reference genome. These indexes are named ***“C_parapsilosis.1.ebwt”***, ***“C_parapsilosis.2.ebwt”***, etc. They will allow boosting the alignment process.  
 As an output, Bowtie provides a **SAM file**. SAM (Sequence Alignment/Map) is a generic format for storing large nucleotide sequence alignments.
 
-***
-
+> ***
+> 
 >  **What you have to do:** 
 > 
-> - [ ] Run sequence alignments with Bowtie using the two Fastq files
-> - [ ] While Bowtie is running, take a look at [Bowtie documentation](http://bowtie-bio.sourceforge.net/manual.shtml#the-bowtie-aligner) that describes the options (particularly the *-m*)
-> - [ ] Look at the alignment statistic outputs (file .out)
-> - [ ] What is the proportion of reads aligned on the reference genome?
-> - [ ] Is there any concern to take into account for the following analyses?
-
-***
+> - [ ] &nbsp; Run sequence alignments with Bowtie using the two Fastq files
+> - [ ] &nbsp; While Bowtie is running, take a look at [Bowtie documentation](http://bowtie-bio.sourceforge.net/manual.shtml#the-bowtie-aligner) that describes the options (particularly the *-m*)
+> - [ ] &nbsp; Look at the alignment statistic outputs (file .out)
+> - [ ] &nbsp; What is the proportion of reads aligned on the reference genome?
+> - [ ] &nbsp; Is there any concern to take into account for the following analyses?
+>
+> ***
 
 1. Create a new directory to store the output of bowtie
 
@@ -258,14 +245,14 @@ As an output, Bowtie provides a **SAM file**. SAM (Sequence Alignment/Map) is a 
 
 In order to facilitate alignement manipulation, **SAM files** have to be converted into **BAM files** (a binary version) and alignements “sorted” according to their localisation on the genome and files indexed in order to speed up their access. We will use the [**Samtools**](http://www.htslib.org/doc/samtools.html) suite to perform these steps.
 
-***
-
+> ***
+> 
 >  **What you have to do:** 
 > 
-> - [ ] Convert SAM files into BAM files
-> - [ ] Sort and index BAM files
-
-***
+> - [ ] &nbsp; Convert SAM files into BAM files
+> - [ ] &nbsp; Sort and index BAM files
+> 
+> ***
 
 1. Sort and convert *.sam* into *.bam* files
 
@@ -364,15 +351,15 @@ The [Integrative Genomics Viewer](http://software.broadinstitute.org/software/ig
 	<img src="./images/Reads_visualization.png" width="100%">
 	</p>
 
-***
-
+> ***
+>
 >  **What you have to do:** 
 > 
-> - [ ] Compare your results with those presented in the original publication
-> - [ ] Did the authors use stranded-specific protocols?
-> - [ ] Can you observe differences between hypoxic and normoxic conditions?
-
-***
+> - [ ] &nbsp; Compare your results with those presented in the original publication
+> - [ ] &nbsp; Did the authors use stranded-specific protocols?
+> - [ ] &nbsp; Can you observe differences between hypoxic and normoxic conditions?
+>
+> ***
 
 &nbsp;
 
@@ -380,13 +367,13 @@ The [Integrative Genomics Viewer](http://software.broadinstitute.org/software/ig
 
 To identify genes whose expression is different between hypoxic and normoxic conditions, we will **count and compare the number of reads mapped to each ORF**. A program available in the [**Bedtools**]( https://github.com/arq5x/bedtools2) suite will be used for this purpose.
 
-***
-
+> ***
+>
 >  **What you have to do:** 
 > 
-> - [ ] Calculate for each ORF the number of reads that were aligned (normoxic and hypoxic conditions).
-
-***
+> - [ ] &nbsp; Calculate for each ORF the number of reads that were aligned (normoxic and hypoxic conditions).
+>
+> ***
 
 1. Create a new directory to store the ORF count matrix
 
@@ -483,15 +470,15 @@ In their article (Guida et al., 2011), the authors repeated the experiment 6 tim
 
 The [DESeq package](http://www.bioconductor.org/packages/release/bioc/html/DESeq2.html) provides methods to test for differential expression by use of the negative binonial distribution and a shrinkage estimator for the distribution’s variance.
 
-***
-
+> ***
+>
 >  **What you have to do:** 
 > 
-> - [ ] Search for differentially expressed genes using DESeq R package
-> - [ ] How many genes are selected with different adjusted p-value thresholds (5%, 1%, etc.)?
-> - [ ] Check your results with IGV and use GOtermFinder (see [practical on microarrays](../Microarrays/Microarrays.md)) to analyse the function of the selected genes
-
-***
+> - [ ] &nbsp; Search for differentially expressed genes using DESeq R package
+> - [ ] &nbsp; How many genes are selected with different adjusted p-value thresholds (5%, 1%, etc.)?
+> - [ ] &nbsp; Check your results with IGV and use GOtermFinder (see [practical on microarrays](../Microarrays/Microarrays.md)) to analyse the function of the selected genes
+>
+> ***
 
 1. Connect to Rstudio server of the IFB
 	Look at the [tutorial on how to connect to IFB-core Rstudio server](../IFBrstudio.md) to see how to proceed.
