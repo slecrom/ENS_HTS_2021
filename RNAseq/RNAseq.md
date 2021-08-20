@@ -75,7 +75,7 @@ FastQC is a quality control application for high throughput sequence data. It pr
 
 ***
 
-> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
+>  **What you have to do:** 
 > 
 > - [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
 > - [ ] Compare results between the two FASTQ files. Is there any concern related to the following analyses?
@@ -86,13 +86,11 @@ FastQC is a quality control application for high throughput sequence data. It pr
 - [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
 - [ ] &nbsp; Compare results between the two FASTQ files. Is there any concern related to the following analyses?
 
-***
-
->**What you have to do:** 
->- [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
->- [ ] Compare results between the two FASTQ files. Is there any concern related to the following analyses?
-
-***
+> ***
+> **What you have to do:** 
+> - [ ] &nbsp; Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
+> - [ ] &nbsp; Compare results between the two FASTQ files. Is there any concern related to the following analyses?
+> ***
 
 1. Create a new directory to store the output of fastqc
 
@@ -175,7 +173,7 @@ As an output, Bowtie provides a **SAM file**. SAM (Sequence Alignment/Map) is a 
 
 ***
 
-> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
+>  **What you have to do:** 
 > 
 > - [ ] Run sequence alignments with Bowtie using the two Fastq files
 > - [ ] While Bowtie is running, take a look at [Bowtie documentation](http://bowtie-bio.sourceforge.net/manual.shtml#the-bowtie-aligner) that describes the options (particularly the *-m*)
@@ -260,7 +258,7 @@ In order to facilitate alignement manipulation, **SAM files** have to be convert
 
 ***
 
-> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
+>  **What you have to do:** 
 > 
 > - [ ] Convert SAM files into BAM files
 > - [ ] Sort and index BAM files
@@ -364,9 +362,9 @@ The [Integrative Genomics Viewer](http://software.broadinstitute.org/software/ig
 	<img src="./images/Reads_visualization.png" width="100%">
 	</p>
 
-	***
+***
 
-> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
+>  **What you have to do:** 
 > 
 > - [ ] Compare your results with those presented in the original publication
 > - [ ] Did the authors use stranded-specific protocols?
@@ -382,7 +380,7 @@ To identify genes whose expression is different between hypoxic and normoxic con
 
 ***
 
-> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
+>  **What you have to do:** 
 > 
 > - [ ] Calculate for each ORF the number of reads that were aligned (normoxic and hypoxic conditions).
 
@@ -485,7 +483,7 @@ The [DESeq package](http://www.bioconductor.org/packages/release/bioc/html/DESeq
 
 ***
 
-> :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
+>  **What you have to do:** 
 > 
 > - [ ] Search for differentially expressed genes using DESeq R package
 > - [ ] How many genes are selected with different adjusted p-value thresholds (5%, 1%, etc.)?
