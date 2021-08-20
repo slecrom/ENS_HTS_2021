@@ -31,28 +31,28 @@ Data used in these practical were collected from the following publication: Guid
 
 2. Go to your home directory
 
-```bash
-cd 
-```
+	```bash
+	cd 
+	```
 
 3. Create a directory that will contain all results of the upcoming analyses
 
-```bash
-mkdir RNAseq
-```
+	```bash
+	mkdir RNAseq
+	```
 
 4. Go to the newly created directory
 
-```bash
-cd RNAseq
-```
+	```bash
+	cd RNAseq
+	```
 
 5. Check your are in the right directory using the `pwd` command:
 
-```bash
-pwd
-/shared/home/<your login>/RNAseq
-```
+	```bash
+	pwd
+	/shared/home/<your login>/RNAseq
+	```
 
 &nbsp;
 
@@ -84,9 +84,16 @@ FastQC is a quality control application for high throughput sequence data. It pr
 
 **What you have to do:** 
 - [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
-- [ ] Compare results between the two FASTQ files. Is there any concern related to the following analyses?
+- [ ] &nbsp; Compare results between the two FASTQ files. Is there any concern related to the following analyses?
 
 ***
+
+>**What you have to do:** 
+>- [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
+>- [ ] Compare results between the two FASTQ files. Is there any concern related to the following analyses?
+
+***
+
 1. Create a new directory to store the output of fastqc
 
 	```bash
@@ -180,70 +187,70 @@ As an output, Bowtie provides a **SAM file**. SAM (Sequence Alignment/Map) is a 
 
 1. Create a new directory to store the output of bowtie
 
-```bash
-#Go back to the parental directory "RNAseq"
-cd ../
+	```bash
+	#Go back to the parental directory "RNAseq"
+	cd ../
 
-#Create a new directory to store results of the alignment
-mkdir 2-Mapping
-```
-Your directory should now look like this :
-```bash
-tree
-│
-└───1-QC
-	└─── O2rep2_SRR352263.fastqc.html
-	└─── O2rep2_SRR352263.fastqc.zip
-	└─── noO2rep3_SRR352271.fastqc.html
-	└─── noO2rep3_SRR352271.fastqc.zip
-└─── 2-Mapping
-```
+	#Create a new directory to store results of the alignment
+	mkdir 2-Mapping
+	```
+	Your directory should now look like this :
+	```bash
+	tree
+	│
+	└───1-QC
+		└─── O2rep2_SRR352263.fastqc.html
+		└─── O2rep2_SRR352263.fastqc.zip
+		└─── noO2rep3_SRR352271.fastqc.html
+		└─── noO2rep3_SRR352271.fastqc.zip
+	└─── 2-Mapping
+	```
 
 2. Go to the newly created directory
 
-```bash
-cd 2-Mapping
-```
+	```bash
+	cd 2-Mapping
+	```
 
 3. Load Bowtie into your environment
 
-```bash
-module load bowtie/1.2.2
-```
+	```bash
+	module load bowtie/1.2.2
+	```
 
 4. Map the reads to the reference genome
 
-```bash
-## We will use the following options:
-# "-S" will output the result in SAM format
-# "/shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis" specify the location and the "prefix (C_parapsilosis)"" of the bowtie's index files
-# "/shared/projects/ens_hts_2021/data/rnaseq/Fastqc/O2rep2_SRR352263.fastq.gz" location of the input fastq
-# "2>" will save in a file some statistic about the aligment (#of reads mapped, etc...)
-# "> redirects the mapping output into a .sam file
+	```bash
+	## We will use the following options:
+	# "-S" will output the result in SAM format
+	# "/shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis" specify the location and the "prefix (C_parapsilosis)"" of the bowtie's index files
+	# "/shared/projects/ens_hts_2021/data/rnaseq/Fastqc/O2rep2_SRR352263.fastq.gz" location of the input fastq
+	# "2>" will save in a file some statistic about the aligment (#of reads mapped, etc...)
+	# "> redirects the mapping output into a .sam file
 
-# Map the aerobic condition reads
-srun bowtie -S /shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq 2> O2rep2_SRR352263_bowtie_mapping.out > O2rep2_SRR352263_bowtie_mapping.sam
+	# Map the aerobic condition reads
+	srun bowtie -S /shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq 2> O2rep2_SRR352263_bowtie_mapping.out > O2rep2_SRR352263_bowtie_mapping.sam
 
-# Map the hypoxic condition reads
-srun bowtie -S /shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/ens_hts_2021/data/rnaseq/noO2rep3_SRR352271.fastq 2> noO2rep3_SRR352271_bowtie_mapping.out > noO2rep3_SRR352271_bowtie_mapping.sam
-```
+	# Map the hypoxic condition reads
+	srun bowtie -S /shared/projects/ens_hts_2021/data/rnaseq/bowtie_indexes/C_parapsilosis /shared/projects/ens_hts_2021/data/rnaseq/noO2rep3_SRR352271.fastq 2> noO2rep3_SRR352271_bowtie_mapping.out > noO2rep3_SRR352271_bowtie_mapping.sam
+	```
 
-Your directory should now look like this :
+	Your directory should now look like this :
 
-```bash
-tree
-.
-├── 1-QC
-│   ├── noO2rep3_SRR352271_fastqc.html
-│   ├── noO2rep3_SRR352271_fastqc.zip
-│   ├── O2rep2_SRR352263_fastqc.html
-│   └── O2rep2_SRR352263_fastqc.zip
-└── 2-Mapping
-    ├── noO2rep3_SRR352271_bowtie_mapping.out
-    ├── noO2rep3_SRR352271_bowtie_mapping.sam
-    ├── O2rep2_SRR352263_bowtie_mapping.out
-    └── O2rep2_SRR352263_bowtie_mapping.sam
-```
+	```bash
+	tree
+	.
+	├── 1-QC
+	│   ├── noO2rep3_SRR352271_fastqc.html
+	│   ├── noO2rep3_SRR352271_fastqc.zip
+	│   ├── O2rep2_SRR352263_fastqc.html
+	│   └── O2rep2_SRR352263_fastqc.zip
+	└── 2-Mapping
+		├── noO2rep3_SRR352271_bowtie_mapping.out
+		├── noO2rep3_SRR352271_bowtie_mapping.sam
+		├── O2rep2_SRR352263_bowtie_mapping.out
+		└── O2rep2_SRR352263_bowtie_mapping.sam
+	```
 
 &nbsp;
 
@@ -262,54 +269,54 @@ In order to facilitate alignement manipulation, **SAM files** have to be convert
 
 1. Sort and convert *.sam* into *.bam* files
 
-```bash
-## "samtools sort" sort alignments by genomic coordinates
-# "|" "pipe" the output of samtools sort to the next program
-## "samtools view" will convert sam into bam
-# option "-b" specify the output to be in BAM format
-# ">"" write the output in the bam file
+	```bash
+	## "samtools sort" sort alignments by genomic coordinates
+	# "|" "pipe" the output of samtools sort to the next program
+	## "samtools view" will convert sam into bam
+	# option "-b" specify the output to be in BAM format
+	# ">"" write the output in the bam file
 
-module load samtools/1.9
+	module load samtools/1.9
 
-# Sort and convert O2 condition
-srun samtools sort O2rep2_SRR352263_bowtie_mapping.sam | srun samtools view -b  > O2rep2_SRR352263_bowtie_sorted.bam
+	# Sort and convert O2 condition
+	srun samtools sort O2rep2_SRR352263_bowtie_mapping.sam | srun samtools view -b  > O2rep2_SRR352263_bowtie_sorted.bam
 
-# Sort and convert noO2 condition
-srun samtools sort noO2rep3_SRR352271_bowtie_mapping.sam | srun samtools view -b  > noO2rep3_SRR352271_bowtie_sorted.bam
-```
+	# Sort and convert noO2 condition
+	srun samtools sort noO2rep3_SRR352271_bowtie_mapping.sam | srun samtools view -b  > noO2rep3_SRR352271_bowtie_sorted.bam
+	```
 
 2. Create indexes for the bam files
 
-The index of a bam file is name ***.bam.bai***
+	The index of a bam file is name ***.bam.bai***
 
-```bash
-# Index the O2 condition
-srun samtools index O2rep2_SRR352263_bowtie_sorted.bam
+	```bash
+	# Index the O2 condition
+	srun samtools index O2rep2_SRR352263_bowtie_sorted.bam
 
-# Index the noO2 condition
-srun samtools index noO2rep3_SRR352271_bowtie_sorted.bam
-```
+	# Index the noO2 condition
+	srun samtools index noO2rep3_SRR352271_bowtie_sorted.bam
+	```
 
-Your directory should now look like this :
+	Your directory should now look like this :
 
-```bash
-tree
-.
-├── 1-QC
-│   ├── noO2rep3_SRR352271_fastqc.html
-│   ├── noO2rep3_SRR352271_fastqc.zip
-│   ├── O2rep2_SRR352263_fastqc.html
-│   └── O2rep2_SRR352263_fastqc.zip
-└── 2-Mapping
-    ├── noO2rep3_SRR352271_bowtie_mapping.out
-    ├── noO2rep3_SRR352271_bowtie_mapping.sam
-    ├── noO2rep3_SRR352271_bowtie_sorted.bam
-    ├── noO2rep3_SRR352271_bowtie_sorted.bam.bai
-    ├── O2rep2_SRR352263_bowtie_mapping.out
-    ├── O2rep2_SRR352263_bowtie_mapping.sam
-    ├── O2rep2_SRR352263_bowtie_sorted.bam
-    └── O2rep2_SRR352263_bowtie_sorted.bam.bai
-```
+	```bash
+	tree
+	.
+	├── 1-QC
+	│   ├── noO2rep3_SRR352271_fastqc.html
+	│   ├── noO2rep3_SRR352271_fastqc.zip
+	│   ├── O2rep2_SRR352263_fastqc.html
+	│   └── O2rep2_SRR352263_fastqc.zip
+	└── 2-Mapping
+		├── noO2rep3_SRR352271_bowtie_mapping.out
+		├── noO2rep3_SRR352271_bowtie_mapping.sam
+		├── noO2rep3_SRR352271_bowtie_sorted.bam
+		├── noO2rep3_SRR352271_bowtie_sorted.bam.bai
+		├── O2rep2_SRR352263_bowtie_mapping.out
+		├── O2rep2_SRR352263_bowtie_mapping.sam
+		├── O2rep2_SRR352263_bowtie_sorted.bam
+		└── O2rep2_SRR352263_bowtie_sorted.bam.bai
+	```
 
 &nbsp;
 
@@ -319,45 +326,45 @@ The [Integrative Genomics Viewer](http://software.broadinstitute.org/software/ig
 
 1. Download the necessary files on your computer
 
-```bash
-# To download files from the cluster to your current directory (on your own computer), **open a new shell and run**
+	```bash
+	# To download files from the cluster to your current directory (on your own computer), **open a new shell and run**
 
-# First bam and bai alignement files
-scp  <your login>@core.cluster.france-bioinformatique.fr:~/RNAseq/2-Mapping/*.bam* .
+	# First bam and bai alignement files
+	scp  <your login>@core.cluster.france-bioinformatique.fr:~/RNAseq/2-Mapping/*.bam* .
 
-# Next the reference genome sequence and gene annotation files
-scp  <your login>@core.cluster.france-bioinformatique.fr:/shared/projects/ens_hts_2021/data/rnaseq/C_parapsilosis_CGD.fasta .
-scp  <your login>@core.cluster.france-bioinformatique.fr:/shared/projects/ens_hts_2021/data/rnaseq/C_parapsilosis_ORFs.gff .
-```
+	# Next the reference genome sequence and gene annotation files
+	scp  <your login>@core.cluster.france-bioinformatique.fr:/shared/projects/ens_hts_2021/data/rnaseq/C_parapsilosis_CGD.fasta .
+	scp  <your login>@core.cluster.france-bioinformatique.fr:/shared/projects/ens_hts_2021/data/rnaseq/C_parapsilosis_ORFs.gff .
+	```
 
 2. Visualize mapping results with IGV
 
-> On linux type "igv" in a terminal window to launch the program
-> 
-> You can also download [IGV](http://software.broadinstitute.org/software/igv/download) and follow the instalation instructions according to your OS
+	> On linux type "igv" in a terminal window to launch the program
+	> 
+	> You can also download [IGV](http://software.broadinstitute.org/software/igv/download) and follow the instalation instructions according to your OS
 
-Once the IGV program is launched, it is necessary to **import the reference genome** “Genomes/Create .genome File...” (see below). Select the FASTA file with the genomic sequence of *C. parapsilosis* “C_parapsilosis_CGD.fasta” (“Browse / FASTA file”) and **enter information regarding ORFs positions**, GFF file “C_parapsilosis_ORFs.gff” (“Browse Gene file”).  
-Finally, give a name to your genome (“Unique identifier” and “Descriptive name”) and press “OK”. Save the genome file in your home.
+	Once the IGV program is launched, it is necessary to **import the reference genome** “Genomes/Create .genome File...” (see below). Select the FASTA file with the genomic sequence of *C. parapsilosis* “C_parapsilosis_CGD.fasta” (“Browse / FASTA file”) and **enter information regarding ORFs positions**, GFF file “C_parapsilosis_ORFs.gff” (“Browse Gene file”).  
+	Finally, give a name to your genome (“Unique identifier” and “Descriptive name”) and press “OK”. Save the genome file in your home.
 
-> **Warning!** In order to IGV to create an index of your genome, you need to copy the reference genome FASTA file in writable directory.
+	> **Warning!** In order to IGV to create an index of your genome, you need to copy the reference genome FASTA file in writable directory.
 
-<p align="center">
-<img src="./images/IGV_genome.png" width="100%">
-</p>
+	<p align="center">
+	<img src="./images/IGV_genome.png" width="100%">
+	</p>
 
-*C. parapsilosis* genome is now loaded into IGV and can be selected from the top/left menu (see 1 below). The genomic sequence can be therefore explored, choosing for instance, a particular chromosome (see 2 below) or a genomic region (see 3). Note that gene annotations (ORF positions) are shown at the bottom of the window (see 4, blue lines) and you can obtain a more detailed view of the sequence using the cursor located on the top/right of the window, see 5).
+	*C. parapsilosis* genome is now loaded into IGV and can be selected from the top/left menu (see 1 below). The genomic sequence can be therefore explored, choosing for instance, a particular chromosome (see 2 below) or a genomic region (see 3). Note that gene annotations (ORF positions) are shown at the bottom of the window (see 4, blue lines) and you can obtain a more detailed view of the sequence using the cursor located on the top/right of the window, see 5).
 
-<p align="center">
-<img src="./images/IGV_tools.png" width="100%">
-</p>
+	<p align="center">
+	<img src="./images/IGV_tools.png" width="100%">
+	</p>
 
-Mapping results (“.sorted.bam” files) can now be imported (“File / Load from File”). Zoom in genomic regions in order to visualize read alignements.
+	Mapping results (“.sorted.bam” files) can now be imported (“File / Load from File”). Zoom in genomic regions in order to visualize read alignements.
 
-<p align="center">
-<img src="./images/Reads_visualization.png" width="100%">
-</p>
+	<p align="center">
+	<img src="./images/Reads_visualization.png" width="100%">
+	</p>
 
-***
+	***
 
 > :heavy_exclamation_mark: **What you have to do:** :heavy_exclamation_mark:
 > 
@@ -383,90 +390,90 @@ To identify genes whose expression is different between hypoxic and normoxic con
 
 1. Create a new directory to store the ORF count matrix
 
-```bash
-# Go to the parental directory "RNAseq"
-cd ../
+	```bash
+	# Go to the parental directory "RNAseq"
+	cd ../
 
-# Create a new directory to store results of the alignment
-mkdir 3-Counts
-```
-Your directory should now look like this :
+	# Create a new directory to store results of the alignment
+	mkdir 3-Counts
+	```
+	Your directory should now look like this :
 
-```bash
-tree
-.
-├── 1-QC
-│   ├── noO2rep3_SRR352271_fastqc.html
-│   ├── noO2rep3_SRR352271_fastqc.zip
-│   ├── O2rep2_SRR352263_fastqc.html
-│   └── O2rep2_SRR352263_fastqc.zip
-├── 2-Mapping
-│   ├── noO2rep3_SRR352271_bowtie_mapping.out
-│   ├── noO2rep3_SRR352271_bowtie_mapping.sam
-│   ├── noO2rep3_SRR352271_bowtie_sorted.bam
-│   ├── noO2rep3_SRR352271_bowtie_sorted.bam.bai
-│   ├── O2rep2_SRR352263_bowtie_mapping.out
-│   ├── O2rep2_SRR352263_bowtie_mapping.sam
-│   ├── O2rep2_SRR352263_bowtie_sorted.bam
-│   └── O2rep2_SRR352263_bowtie_sorted.bam.bai
-└── 3-Counts
-```
+	```bash
+	tree
+	.
+	├── 1-QC
+	│   ├── noO2rep3_SRR352271_fastqc.html
+	│   ├── noO2rep3_SRR352271_fastqc.zip
+	│   ├── O2rep2_SRR352263_fastqc.html
+	│   └── O2rep2_SRR352263_fastqc.zip
+	├── 2-Mapping
+	│   ├── noO2rep3_SRR352271_bowtie_mapping.out
+	│   ├── noO2rep3_SRR352271_bowtie_mapping.sam
+	│   ├── noO2rep3_SRR352271_bowtie_sorted.bam
+	│   ├── noO2rep3_SRR352271_bowtie_sorted.bam.bai
+	│   ├── O2rep2_SRR352263_bowtie_mapping.out
+	│   ├── O2rep2_SRR352263_bowtie_mapping.sam
+	│   ├── O2rep2_SRR352263_bowtie_sorted.bam
+	│   └── O2rep2_SRR352263_bowtie_sorted.bam.bai
+	└── 3-Counts
+	```
 
 2. Go to the newly created directory
 
-```bash
-cd  3-Counts
-```
+	```bash
+	cd  3-Counts
+	```
 
 3. Calculate for each ORF the number of reads that were aligned to it
 
-```bash
-module load bedtools/2.27.1
+	```bash
+	module load bedtools/2.27.1
 
-# Counting matrix for the O2 condition
-srun bedtools multicov -bams ../2-Mapping/O2rep2_SRR352263_bowtie_sorted.bam -bed /shared/projects/ens_hts_2021/data/rnaseq/C_parapsilosis_ORFs.gff > O2rep2_SRR352263_gene_counts.gff
-# Output formating
-srun sed 's/^.*ID=//' O2rep2_SRR352263_gene_counts.gff > O2rep2_SRR352263_gene_counts.tab
+	# Counting matrix for the O2 condition
+	srun bedtools multicov -bams ../2-Mapping/O2rep2_SRR352263_bowtie_sorted.bam -bed /shared/projects/ens_hts_2021/data/rnaseq/C_parapsilosis_ORFs.gff > O2rep2_SRR352263_gene_counts.gff
+	# Output formating
+	srun sed 's/^.*ID=//' O2rep2_SRR352263_gene_counts.gff > O2rep2_SRR352263_gene_counts.tab
 
-# Counting matrix for the noO2 condition
-srun bedtools multicov -bams ../2-Mapping/noO2rep3_SRR352271_bowtie_sorted.bam -bed /shared/projects/ens_hts_2021/data/rnaseq/C_parapsilosis_ORFs.gff > noO2rep3_SRR352271_gene_counts.gff
-# Output formating
-srun sed 's/^.*ID=//' noO2rep3_SRR352271_gene_counts.gff > noO2rep3_SRR352271_gene_counts.tab
-```
+	# Counting matrix for the noO2 condition
+	srun bedtools multicov -bams ../2-Mapping/noO2rep3_SRR352271_bowtie_sorted.bam -bed /shared/projects/ens_hts_2021/data/rnaseq/C_parapsilosis_ORFs.gff > noO2rep3_SRR352271_gene_counts.gff
+	# Output formating
+	srun sed 's/^.*ID=//' noO2rep3_SRR352271_gene_counts.gff > noO2rep3_SRR352271_gene_counts.tab
+	```
 
-Take a look at the final counting matrices to see how the files are organised.
+	Take a look at the final counting matrices to see how the files are organised.
 
-At the end of RNA-seq data analysis your directory should look like this :
+	At the end of RNA-seq data analysis your directory should look like this :
 
-```bash
-tree
-.
-├── 1-QC
-│   ├── noO2rep3_SRR352271_fastqc.html
-│   ├── noO2rep3_SRR352271_fastqc.zip
-│   ├── O2rep2_SRR352263_fastqc.html
-│   └── O2rep2_SRR352263_fastqc.zip
-├── 2-Mapping
-│   ├── noO2rep3_SRR352271_bowtie_mapping.out
-│   ├── noO2rep3_SRR352271_bowtie_mapping.sam
-│   ├── noO2rep3_SRR352271_bowtie_sorted.bam
-│   ├── noO2rep3_SRR352271_bowtie_sorted.bam.bai
-│   ├── O2rep2_SRR352263_bowtie_mapping.out
-│   ├── O2rep2_SRR352263_bowtie_mapping.sam
-│   ├── O2rep2_SRR352263_bowtie_sorted.bam
-│   └── O2rep2_SRR352263_bowtie_sorted.bam.bai
-└── 3-Counts
-    ├── noO2rep3_SRR352271_gene_counts.gff
-    ├── noO2rep3_SRR352271_gene_counts.tab
-    ├── O2rep2_SRR352263_gene_counts.gff
-    └── O2rep2_SRR352263_gene_counts.tab
-```
+	```bash
+	tree
+	.
+	├── 1-QC
+	│   ├── noO2rep3_SRR352271_fastqc.html
+	│   ├── noO2rep3_SRR352271_fastqc.zip
+	│   ├── O2rep2_SRR352263_fastqc.html
+	│   └── O2rep2_SRR352263_fastqc.zip
+	├── 2-Mapping
+	│   ├── noO2rep3_SRR352271_bowtie_mapping.out
+	│   ├── noO2rep3_SRR352271_bowtie_mapping.sam
+	│   ├── noO2rep3_SRR352271_bowtie_sorted.bam
+	│   ├── noO2rep3_SRR352271_bowtie_sorted.bam.bai
+	│   ├── O2rep2_SRR352263_bowtie_mapping.out
+	│   ├── O2rep2_SRR352263_bowtie_mapping.sam
+	│   ├── O2rep2_SRR352263_bowtie_sorted.bam
+	│   └── O2rep2_SRR352263_bowtie_sorted.bam.bai
+	└── 3-Counts
+		├── noO2rep3_SRR352271_gene_counts.gff
+		├── noO2rep3_SRR352271_gene_counts.tab
+		├── O2rep2_SRR352263_gene_counts.gff
+		└── O2rep2_SRR352263_gene_counts.tab
+	```
 
 4. Unload the tools you used
 
-```bash
-module unload fastqc/0.11.9 bowtie/1.2.2 samtools/1.9  bedtools/2.27.1
-```
+	```bash
+	module unload fastqc/0.11.9 bowtie/1.2.2 samtools/1.9  bedtools/2.27.1
+	```
 
 &nbsp;
 
