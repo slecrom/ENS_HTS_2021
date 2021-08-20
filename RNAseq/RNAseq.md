@@ -82,73 +82,78 @@ FastQC is a quality control application for high throughput sequence data. It pr
 
 ***
 
+**What you have to do:** 
+- [ ] Use FASTQC to evaluate the quality of sequences in each FASTQ files. Using information from the [Fastqc help page](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/Help) as well as exemples of [good](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/good_sequence_short_fastqc.html) or  [bad](http://www.bioinformatics.babraham.ac.uk/projects/fastqc/bad_sequence_fastqc.html) illumina data as references.
+- [ ] Compare results between the two FASTQ files. Is there any concern related to the following analyses?
+
+***
 1. Create a new directory to store the output of fastqc
 
-```bash
-mkdir 1-QC
-# Using the `tree` command, your directory should look like this:
-tree
-│
-└───1-QC
-```
+	```bash
+	mkdir 1-QC
+	# Using the `tree` command, your directory should look like this:
+	tree
+	│
+	└───1-QC
+	```
 
 2. Go to this directory
 
-```bash
-cd 1-QC
-```
+	```bash
+	cd 1-QC
+	```
 
 3. Make fastqc available in your environment
 
-```bash
-module load fastqc/0.11.9
-```
+	```bash
+	module load fastqc/0.11.9
+	```
 
 4. Check the help page of the programme to see its usage and parameters 
 
-```bash
-srun fastqc --help
-```
+	```bash
+	srun fastqc --help
+	```
 
 5. Run fastqc on each experiment files
 
-```bash
-# O2 condition
-# Absolute path to the file: /shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq
-# -o option creates all output files in the specified output directory, '.' means current directory
+	```bash
+	# O2 condition
+	# Absolute path to the file: /shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq
+	# -o option creates all output files in the specified output directory, '.' means current directory
 
-srun fastqc /shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq -o .
+	srun fastqc /shared/projects/ens_hts_2021/data/rnaseq/O2rep2_SRR352263.fastq -o .
 
-# noO2 condition
-srun fastqc /shared/projects/ens_hts_2021/data/rnaseq/noO2rep3_SRR352271.fastq -o .
-```
+	# noO2 condition
+	srun fastqc /shared/projects/ens_hts_2021/data/rnaseq/noO2rep3_SRR352271.fastq -o .
+	```
 
-At this point you should see the new files in your directory using the `tree` command
+	At this point you should see the new files in your directory using the `tree` command
 
-```bash
-tree
-│
-└───1-QC
-	└─── O2rep2_SRR352263.fastqc.html
-	└─── O2rep2_SRR352263.fastqc.zip
-	└─── noO2rep3_SRR352271.fastqc.html
-	└─── noO2rep3_SRR352271.fastqc.zip
-```
+	```bash
+	tree
+	│
+	└───1-QC
+		└─── O2rep2_SRR352263.fastqc.html
+		└─── O2rep2_SRR352263.fastqc.zip
+		└─── noO2rep3_SRR352271.fastqc.html
+		└─── noO2rep3_SRR352271.fastqc.zip
+	```
 
 6. Download the HTML file reports on your local machine
 
-```bash
-## OPEN A NEW TERMINAL
-# Create a directory where to put generated files on your computer
-mkdir ~/Desktop/RNAseq/
+	```bash
+	## OPEN A NEW TERMINAL
+	# Create a directory where to put generated files on your computer
+	mkdir ~/Desktop/RNAseq/
 
-# Go to this directory
-cd ~/Desktop/RNAseq/
+	# Go to this directory
+	cd ~/Desktop/RNAseq/
 
-# Download html report files from IFB server
-scp <login>@core.cluster.france-bioinformatique.fr:~/RNAseq/1-QC/*.html .
-# Enter your password 
-```
+	# Download html report files from IFB server
+	scp <login>@core.cluster.france-bioinformatique.fr:~/RNAseq/1-QC/*.html .
+	# Enter your password 
+	```
 
 7. Open the *.html* report with your internet browser
 
