@@ -490,4 +490,6 @@ The [DESeq package](http://www.bioconductor.org/packages/release/bioc/html/DESeq
    * In *File > Open File...* enter the path ***/shared/projects/ens_hts_2021/data/rnaseq/DEseq2.Rmd*** to open the notebook containing all the code needed for the practical
    * Save it into your personal folder using *File > Save As* 
    
-3. Follow the instruction of the notebook to conduct the analysis. You can also visualize the final [report version](DEseq2_report.html) .
+3. Follow the instruction of the notebook to conduct the analysis. You can also visualize the final [report version](DEseq2_report.html).
+
+You can find help on how to use R markdown on the [R markdown projet webpage](https://rmarkdown.rstudio.com/lesson-2.html).
