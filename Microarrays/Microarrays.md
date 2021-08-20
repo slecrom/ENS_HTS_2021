@@ -10,4 +10,4 @@
 
 3. Follow the instruction of the notebook to conduct the analysis. You can also visualize the final [report version](Microarrays_report.html).
 
-You can find help on how to use R markdown on the [R markdown projet webpage](https://rmarkdown.rstudio.com/lesson-2.html).
+You can find help on how to use R markdown on the [R markdown project webpage](https://rmarkdown.rstudio.com/lesson-2.html).
